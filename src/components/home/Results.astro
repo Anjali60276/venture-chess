@@ -1,0 +1,204 @@
+---
+import { achievements } from '../../data/achievements';
+import MagneticButton from '../ui/MagneticButton.astro';
+
+// Just take a few for the homepage
+const featuredResults = achievements.slice(0, 6);
+---
+
+<section class="section results-section">
+  <div class="container">
+    <div class="results-header reveal-fade-up">
+      <h2 class="text-display title">STUDENT RESULTS</h2>
+      <div class="results-actions">
+        <div class="slider-nav">
+          <button class="slider-btn prev-btn" aria-label="Previous results">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="slider-btn next-btn" aria-label="Next results">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+        <MagneticButton href="/chess-student-achievements/" text="View All Results" variant="secondary" />
+      </div>
+    </div>
+
+    <div class="results-slider-container reveal-fade-up" style="transition-delay: 0.2s;">
+      <div class="results-track">
+        {featuredResults.map((result) => (
+          <div class="result-card hover-lift">
+            <div class="result-image" data-cursor-text="VIEW">
+              <img src={result.image} alt={result.name} loading="lazy" />
+            </div>
+            <div class="result-content">
+              <h4 class="student-name">{result.name}</h4>
+              {result.achievement && (
+                <p class="student-achievement">{result.achievement}</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.results-track');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (track && prevBtn && nextBtn) {
+      prevBtn.addEventListener('click', () => {
+        const card = track.querySelector('.result-card');
+        const scrollAmount = card ? (card as HTMLElement).offsetWidth + 32 : 300;
+        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        const card = track.querySelector('.result-card');
+        const scrollAmount = card ? (card as HTMLElement).offsetWidth + 32 : 300;
+        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      });
+    }
+  });
+</script>
+
+<style>
+  .results-section {
+    padding: 8rem 0;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    overflow: hidden;
+  }
+
+  .results-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .results-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+  }
+
+  .results-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .results-actions {
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+
+  .slider-nav {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .slider-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    color: var(--color-surface);
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .slider-btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-secondary);
+    transform: scale(1.05);
+  }
+
+  .title {
+    color: var(--color-surface);
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  .results-slider-container {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0 calc(50vw - 50%);
+  }
+
+  .results-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 2rem 3rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .results-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .result-card {
+    flex: 0 0 85vw;
+    scroll-snap-align: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  @media (min-width: 768px) {
+    .result-card {
+      flex: 0 0 400px;
+      scroll-snap-align: start;
+    }
+  }
+
+  .result-image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .result-card:hover .result-image img {
+    transform: scale(1.05);
+  }
+
+  .student-name {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .student-achievement {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    margin: 0;
+  }
+</style>

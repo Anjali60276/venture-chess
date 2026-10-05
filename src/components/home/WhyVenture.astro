@@ -1,0 +1,251 @@
+---
+// WhyVenture.astro
+import MagneticButton from '../ui/MagneticButton.astro';
+---
+
+<section class="section why-venture-section">
+  <div class="container">
+    <div class="why-venture-grid">
+      
+      <!-- Left Column (Image & Floating Stat) -->
+      <div class="image-col reveal-fade-up">
+        <div class="image-wrapper">
+          <img src="https://venturechessacademy.com/wp-content/uploads/2026/05/venture-website-images-4.png" alt="Live chess coaching on laptop and mobile" class="main-image" />
+          
+          <div class="floating-stat">
+            <div class="stat-icon"></div>
+            <div class="stat-content">
+              <h4>52 students</h4>
+              <p>In live sessions now</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column (Content) -->
+      <div class="content-col reveal-fade-up" style="transition-delay: 0.2s;">
+        <h6 class="subtitle">WHY VENTURE CHESS ACADEMY</h6>
+        <h2 class="title">Trained by FIDE-rated coaches. <span class="highlight">From home.</span></h2>
+        <p class="description">
+          Expert live coaching that builds real skills - not just rules.<br/>
+          Your child plays, learns, and competes from day one.
+        </p>
+        
+        <div class="features-list">
+          <div class="feature-item">
+            <div class="feature-icon bg-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
+            </div>
+            <div class="feature-text">
+              <h3>FIDE-rated personal instructors</h3>
+              <p>Your child learns directly from internationally certified players - not tutors reading from a book.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon bg-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
+            </div>
+            <div class="feature-text">
+              <h3>Proven theory + practice method</h3>
+              <p>Every session blends tactical puzzles, live games, and coached analysis so skills actually stick.</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon bg-light">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path></svg>
+            </div>
+            <div class="feature-text">
+              <h3>Internal tournaments included</h3>
+              <p>Students compete in coached online tournaments before stepping into external championships.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="action-wrapper">
+          <MagneticButton href="/contact-us/" text="Book your child's free class" variant="secondary" />
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-venture-section {
+    background-color: var(--color-primary);
+    padding: 8rem 0;
+    color: var(--color-surface);
+  }
+
+  .why-venture-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .why-venture-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+  }
+
+  /* Left Column */
+  .image-wrapper {
+    position: relative;
+    border-radius: var(--radius-xl);
+  }
+
+  .main-image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    display: block;
+  }
+
+  .floating-stat {
+    position: absolute;
+    bottom: -2rem;
+    left: -1rem;
+    background-color: #2b7a5f; /* Green color from screenshot */
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .floating-stat {
+      left: -2rem;
+    }
+  }
+
+  .stat-icon {
+    width: 12px;
+    height: 12px;
+    background-color: #a8f5cc;
+    border-radius: 50%;
+  }
+
+  .stat-content h4 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 0 0 0.2rem 0;
+  }
+
+  .stat-content p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* Right Column */
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--color-surface);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .subtitle::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-secondary);
+    border-radius: 50%;
+  }
+
+  .title {
+    color: var(--color-surface);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
+    color: var(--color-secondary);
+    font-style: italic;
+  }
+
+  .description {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-item {
+    background-color: #fcf9f2; /* Light cream background */
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    color: var(--color-text);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .bg-primary {
+    background-color: #e5f0ff;
+    color: #4361ee;
+  }
+
+  .bg-secondary {
+    background-color: #eaffed;
+    color: #2b7a5f;
+  }
+
+  .bg-light {
+    background-color: #ffedd6;
+    color: #d97706;
+  }
+
+  .feature-text h3 {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-text p {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .action-wrapper {
+    margin-top: 2rem;
+  }
+</style>

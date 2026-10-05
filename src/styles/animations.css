@@ -1,0 +1,58 @@
+/* Scroll Reveal Animations */
+
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-clip-path {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transition: clip-path 1s var(--ease-spring);
+}
+
+.reveal-clip-path.is-visible {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.image-reveal-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.image-reveal-wrapper img {
+  transform: scale(1.1);
+  transition: transform 1.5s var(--ease-out);
+}
+
+.image-reveal-wrapper.is-visible img {
+  transform: scale(1);
+}
+
+/* Hover Effects */
+
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-image-zoom {
+  overflow: hidden;
+}
+
+.hover-image-zoom img {
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.hover-image-zoom:hover img {
+  transform: scale(1.05);
+}

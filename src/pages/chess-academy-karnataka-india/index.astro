@@ -1,0 +1,510 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { courses } from '../../data/courses';
+import { services } from '../../data/services';
+import CTA from '../../components/home/CTA.astro';
+import MagneticButton from '../../components/ui/MagneticButton.astro';
+import PageHeader from '../../components/ui/PageHeader.astro';
+---
+
+<BaseLayout title="online chess classes for kids | Chess Training India | Chess Institiute India | chess academy" description="Join a leading chess academy in Karnataka. Learn from expert coaches through online chess classes for kids and beginners.">
+  <PageHeader title="Our Courses" subtitle="SYLLABUS" />
+
+  <section class="section courses-list">
+    <div class="container">
+      <div class="courses-grid">
+        {courses.map((course, index) => (
+          <div id={course.id} class="course-card reveal-fade-up" style={`transition-delay: ${(index % 3) * 0.1}s;`}>
+            <div class="course-image">
+              <img src={course.image} alt={course.name} loading="lazy" />
+            </div>
+            <div class="course-content">
+              <div class="course-level">LEVEL 0{index + 1}</div>
+              <h3 class="text-h3 course-name">{course.name}</h3>
+              <p class="course-desc">{course.description}</p>
+              <div class="course-action">
+                <MagneticButton href="/contact-us/" text="Join Now" variant="primary" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section advantages-section">
+    <div class="container">
+      <div class="advantages-grid">
+        <div class="advantages-text reveal-fade-up">
+          <h2 class="text-h2 title">Advantages of Learning Chess Online</h2>
+          <ul class="advantages-list">
+            <li>
+              <strong>Convenience:</strong> Students can learn from anywhere with an internet connection, saving time and eliminating the need for travel.
+            </li>
+            <li>
+              <strong>Flexibility:</strong> Online classes offer more flexible scheduling options, making it easier for students to fit chess lessons into their busy routines.
+            </li>
+            <li>
+              <strong>Comfortable Environment:</strong> Students can learn in a familiar and comfortable setting, which can reduce anxiety and promote better concentration.
+            </li>
+            <li>
+              <strong>Parental Involvement:</strong> Parents can easily monitor their child’s progress and observe lessons, fostering greater involvement and support.
+            </li>
+            <li>
+              <strong>Global Opportunities:</strong> Online platforms provide access to a broader range of opponents and tournaments, allowing students to compete on a global scale.
+            </li>
+          </ul>
+        </div>
+        <div class="advantages-image image-reveal-wrapper">
+          <img src="https://venturechessacademy.com/wp-content/uploads/2026/02/Chess-Academy-3.webp" alt="Learning Chess Online" class="rounded-xl shadow-lg"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services-detail">
+    <div class="container">
+      {services.map((service, index) => (
+        <div id={service.id} class={`service-detail-row reveal-fade-up ${index % 2 !== 0 ? 'reverse' : ''}`}>
+          <div class="service-detail-text">
+            <h2 class="text-h2 title mb-4">{service.name}</h2>
+            {service.description.split('\n\n').map(paragraph => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+          <div class="service-detail-image image-reveal-wrapper">
+            <img src={service.image} alt={service.name} class="rounded-xl shadow-md"/>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section extra-content">
+    <div class="container">
+      <div class="we-provide-header reveal-fade-up text-center mb-5">
+        <h2 class="text-h1 title" style="text-transform: uppercase; font-weight: 800; line-height: 1;">We Also Provide</h2>
+      </div>
+
+      <div class="features-grid mb-6">
+        {['Flexible Weekly Schedule', 'Weekly Tournaments', 'Weekly Puzzle Quest', 'Custom Position Drills', 'Assignments', 'Video Courses', 'Monthly Progress Report'].map((item, index) => (
+          <div class="feature-card reveal-fade-up" style={`transition-delay: ${(index % 4) * 0.1}s;`}>
+            <div class="feature-icon">✓</div>
+            <h4 class="feature-title">{item}</h4>
+          </div>
+        ))}
+      </div>
+
+      <div class="premium-text-box reveal-fade-up">
+        <div class="text-content">
+          <p class="lead-text">Venture Chess Academy is a professional, structured online chess institute that delivers systematic chess training and chess courses online for children aged 3–18. It is the science of turning playful moves into powerful cognitive gains improving IQ, focus, logical reasoning, and emotional resilience through expert-guided, measurable progression.</p>
+          <div class="text-columns">
+            <p>At its core, Venture chess academy is all about upgrading a child’s mental operating system. Every session adds to the “statistics” of the brain such as: faster pattern recognition, sharper calculation, and stronger decision-making under pressure.</p>
+            <p>When we talk about a chess academy, it is built from multiple proven elements, and every parent must understand how they work together. In simple terms, chess training in a structured academy is significant because it makes invisible brain growth visible. This means weekly progress reports, Elo rating jumps, and tournament readiness, giving children real opportunities to convert curiosity into confidence, medals, and future-ready skills.</p>
+          </div>
+          
+          <div class="highlight-box">
+            <h4 class="mb-2">Beyond this, a chess institute online is a powerful tool for:</h4>
+            <div class="tags-container">
+              <span class="tag">Building unbreakable focus</span>
+              <span class="tag">Enhancing memory retention</span>
+              <span class="tag">Developing resilience</span>
+              <span class="tag">Fostering sportsmanship</span>
+            </div>
+            <p class="mt-4">Adding an online chess course to your child’s routine connects them with FIDE-rated coaches who teach world-class strategies from the comfort of home. So, without further delay, join Venture Chess Academy Karnataka, India, the state’s most trusted online chess institute.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-choose-section">
+    <div class="container">
+      <div class="why-choose-grid">
+        <div class="why-text reveal-fade-up">
+          <h2 class="text-h1 title text-surface mb-4" style="text-transform: uppercase; font-weight: 800; line-height: 1;">Why Choose Venture Chess Academy?</h2>
+          <p class="text-surface-muted mb-4">Venture Chess Academy Karnataka, India stands out as the premier chess institute online for these undeniable reasons:</p>
+          <div class="mt-6">
+            <p class="text-surface mb-4">Let your child explore 60-minute free interactive session with FIDE Rated coaches.</p>
+            <MagneticButton href="/appointment/" text="Enroll Here" variant="secondary" />
+          </div>
+        </div>
+        <div class="why-features reveal-fade-up" style="transition-delay: 0.2s;">
+          <ul class="premium-check-list">
+            <li>One-on-One Batch Sessions</li>
+            <li>Customized Chess Training</li>
+            <li>FIDE-Rated Coaches</li>
+            <li>Coaching as per International FIDE Rules</li>
+            <li>Certificate of Completion + Progress Report</li>
+            <li>Free Demo Trial Class</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* We Provide Section */
+  .mb-5 { margin-bottom: 3rem; }
+  .mb-6 { margin-bottom: 4rem; }
+  .mt-4 { margin-top: 1.5rem; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .feature-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border-radius: 50%;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .premium-text-box {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-2xl);
+    padding: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .premium-text-box {
+      padding: 3rem;
+    }
+  }
+
+  .lead-text {
+    font-size: 1.25rem !important;
+    font-weight: 500;
+    color: var(--color-primary) !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .text-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .text-columns {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .text-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-text-light);
+  }
+
+  .highlight-box {
+    background: var(--color-primary);
+    color: var(--color-surface);
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+  }
+
+  .highlight-box h4 {
+    color: var(--color-secondary);
+  }
+
+  .highlight-box p {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+  }
+
+  /* Why Choose Section */
+  .why-choose-section {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: 6rem 0;
+  }
+
+  .text-surface {
+    color: var(--color-surface) !important;
+  }
+
+  .text-surface-muted {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .why-choose-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .why-choose-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .premium-check-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .premium-check-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.2rem 1.5rem;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .premium-check-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+    border-color: var(--color-secondary);
+  }
+
+  .premium-check-list li::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .courses-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .courses-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .course-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+
+  .course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .course-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+
+  .course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .course-content {
+    padding: 2rem;
+  }
+
+  .course-level {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .course-name {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .course-desc {
+    margin: 0;
+  }
+  
+  .course-action {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .advantages-section {
+    background-color: var(--color-surface);
+  }
+
+  .advantages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .advantages-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .advantages-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .advantages-list li {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .advantages-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: bold;
+  }
+
+  .advantages-list strong {
+    color: var(--color-primary);
+  }
+
+  .service-detail-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-detail-row:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 1024px) {
+    .service-detail-row {
+      grid-template-columns: 1fr 1fr;
+    }
+    .service-detail-row.reverse .service-detail-text {
+      order: 2;
+    }
+    .service-detail-row.reverse .service-detail-image {
+      order: 1;
+    }
+  }
+
+  .service-detail-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .shadow-lg { box-shadow: var(--shadow-lg); }
+  .shadow-md { box-shadow: var(--shadow-md); }
+</style>

@@ -1,0 +1,77 @@
+---
+import MagneticButton from '../ui/MagneticButton.astro';
+---
+
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-card reveal-clip-path">
+      <div class="cta-content">
+        <h2 class="text-display title">Ready to Make Your Move?</h2>
+        <p class="subtitle">Join our academy and let your child explore chess with FIDE Rated coaches.</p>
+        <MagneticButton href="/appointment/" text="Book Free Trial" variant="primary" />
+      </div>
+      
+      <!-- Decorative Elements -->
+      <div class="chess-piece piece-1">♚</div>
+      <div class="chess-piece piece-2">♞</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    padding: 2rem 0 6rem;
+  }
+
+  .cta-card {
+    background-color: var(--color-secondary);
+    border-radius: var(--radius-2xl);
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+  }
+
+  .title {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    color: var(--color-primary);
+    opacity: 0.8;
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .chess-piece {
+    position: absolute;
+    font-size: 15rem;
+    color: var(--color-primary);
+    opacity: 0.05;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .piece-1 {
+    top: -50px;
+    left: -50px;
+    transform: rotate(-15deg);
+  }
+
+  .piece-2 {
+    bottom: -50px;
+    right: -20px;
+    transform: rotate(15deg);
+  }
+</style>

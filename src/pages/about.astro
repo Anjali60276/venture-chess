@@ -1,0 +1,137 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CTA from "../components/home/CTA.astro";
+import PageHeader from "../components/ui/PageHeader.astro";
+---
+
+<BaseLayout
+  title="Online Chess Academy for Kids | Chess Classes for Kids"
+  description="Discover Venture Chess Academy's expert online chess coaching for kids, led by FIDE-rated coaches and proven training methods."
+>
+  <PageHeader title="About Us" />
+
+  <section class="section about-content">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal-fade-up">
+          <h2 class="text-h2 text-primary mb-4">Our Mission</h2>
+          <p>
+            As more kids take up chess, the pressure on them increases. Venture
+            Chess Academy bridges the gap by making chess fun, helping children
+            manage stress, and turning their pressure into a positive driving
+            force.
+          </p>
+          <p>
+            Founded by passionate chess professionals, we understand the
+            psychology of young learners. We don't just teach moves; we
+            cultivate a winning mentality and resilience that applies both on
+            and off the board.
+          </p>
+        </div>
+
+        <div class="about-image image-reveal-wrapper">
+          <img
+            src="https://venturechessacademy.com/wp-content/uploads/2026/03/Chess-Academy-2.webp"
+            alt="Chess Class in Session"
+            class="rounded-xl"
+          />
+        </div>
+      </div>
+
+      <div class="coach-section mt-8">
+        <h2 class="text-h2 text-center text-primary mb-4 reveal-fade-up">
+          Meet the Founder
+        </h2>
+
+        <div class="coach-card reveal-fade-up" style="transition-delay: 0.2s;">
+          <div class="coach-image">
+            <img
+              src="https://venturechessacademy.com/wp-content/uploads/2025/04/IMG-20240317-WA0062.webp"
+              alt="Shriram Ponnengala"
+            />
+          </div>
+          <div class="coach-info">
+            <h3 class="text-h3 text-secondary mb-2">Shriram Ponnengala</h3>
+            <p class="subtitle mb-4">Founder & Lead Coach</p>
+            <p>
+              Shriram brings years of FIDE-rated competitive experience and a
+              deep passion for teaching. His pedagogical approach focuses on
+              strong foundational theory paired with rigorous practical
+              application, ensuring that students not only understand the 'how'
+              but the 'why' behind every move.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  .mt-8 {
+    margin-top: 6rem;
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .about-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  .coach-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 768px) {
+    .coach-card {
+      grid-template-columns: 300px 1fr;
+    }
+  }
+
+  .coach-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 1;
+  }
+
+  .coach-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

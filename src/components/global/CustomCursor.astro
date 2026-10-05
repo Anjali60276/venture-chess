@@ -1,0 +1,181 @@
+---
+// Custom Cursor Component for Desktop
+---
+
+<div id="custom-cursor" class="custom-cursor">
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring">
+    <span class="cursor-text"></span>
+  </div>
+</div>
+
+<style>
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    /* Hidden on default, JS will reveal it if not touch device */
+    display: none; 
+  }
+
+  @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .custom-cursor {
+      display: block;
+    }
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    pointer-events: none;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), background-color 0.3s var(--ease-out), border-color 0.3s;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cursor-text {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--color-surface);
+    opacity: 0;
+    transition: opacity 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Interaction States */
+  .custom-cursor.is-link .cursor-dot {
+    background-color: var(--color-secondary);
+    width: 8px;
+    height: 8px;
+  }
+  .custom-cursor.is-link .cursor-ring {
+    border-color: var(--color-secondary);
+    width: 50px;
+    height: 50px;
+  }
+
+  .custom-cursor.is-button .cursor-dot {
+    opacity: 0;
+  }
+  .custom-cursor.is-button .cursor-ring {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(30, 58, 138, 0.1);
+    border-color: transparent;
+  }
+
+  .custom-cursor.is-image .cursor-dot {
+    opacity: 0;
+  }
+  .custom-cursor.is-image .cursor-ring {
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+  .custom-cursor.is-image .cursor-text {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Only init if pointer is fine (not a touch device) and motion is not reduced
+    const isTouch = matchMedia('(hover: none), (pointer: coarse)').matches;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (isTouch || reducedMotion) return;
+
+    const cursor = document.getElementById('custom-cursor');
+    if (!cursor) return;
+
+    const dot = cursor.querySelector('.cursor-dot') as HTMLElement;
+    const ring = cursor.querySelector('.cursor-ring') as HTMLElement;
+    const text = cursor.querySelector('.cursor-text') as HTMLElement;
+
+    if (!dot || !ring || !text) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    
+    // Lerp factor for smooth trailing
+    const speed = 0.15;
+
+    function animate() {
+      // Update dot position immediately
+      dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+      
+      // Lerp ring position
+      ringX += (mouseX - ringX) * speed;
+      ringY += (mouseY - ringY) * speed;
+      ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`;
+      
+      requestAnimationFrame(animate);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    animate();
+
+    // Hover states
+    const addHoverState = (selector: string, stateClass: string, textContent: string = '') => {
+      document.querySelectorAll(selector).forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.classList.add(stateClass);
+          if (textContent) text.textContent = textContent;
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.classList.remove(stateClass);
+          if (textContent) text.textContent = '';
+        });
+      });
+    };
+
+    // Apply states
+    addHoverState('a:not(.elementor-button):not(.btn)', 'is-link');
+    addHoverState('button, .btn, a.elementor-button, a[role="button"]', 'is-button');
+    addHoverState('.hover-image-zoom, .image-reveal-wrapper, img.interactive', 'is-image', 'VIEW');
+    
+    // Add custom cursor text support via data attribute
+    document.querySelectorAll('[data-cursor-text]').forEach(el => {
+      el.addEventListener('mouseenter', (e) => {
+        cursor.classList.add('is-image');
+        text.textContent = (e.currentTarget as HTMLElement).getAttribute('data-cursor-text') || 'VIEW';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('is-image');
+        text.textContent = '';
+      });
+    });
+  });
+</script>

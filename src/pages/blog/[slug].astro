@@ -1,0 +1,642 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const response = await fetch('https://venturechessacademy.com/wp-json/wp/v2/posts?_embed&per_page=100');
+  let posts = [];
+  if (response.ok) {
+    posts = await response.json();
+  }
+
+  return posts.map((post) => {
+    let related = posts.filter((p) => p.id !== post.id).slice(0, 3);
+    
+    return {
+      params: { slug: post.slug },
+      props: { post, relatedPosts: related },
+    };
+  });
+}
+
+const { post, relatedPosts } = Astro.props;
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.toLocaleString('en-US', { month: 'long' });
+  const year = date.getFullYear();
+  return `${day} ${month} ${year}`;
+}
+
+function getReadingTime(html) {
+  const wordsPerMinute = 225;
+  const text = html.replace(/<[^>]*>?/gm, '');
+  const wordCount = text.trim().split(/\s+/).length;
+  const time = Math.ceil(wordCount / wordsPerMinute);
+  return `${time} min read`;
+}
+
+const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/placeholder-blog.jpg';
+const category = post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Insights';
+const authorName = post._embedded?.author?.[0]?.name || 'Venture Chess Academy';
+const readingTime = getReadingTime(post.content.rendered);
+---
+
+<BaseLayout title={`${post.title.rendered.replace(/<[^>]+>/g, '')} | Venture Chess Academy`}>
+  <article class="blog-post">
+    
+    <!-- Banner Section -->
+    <header class="blog-banner" style={`background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.85)), url(${featuredImage})`}>
+      <div class="container banner-content text-center">
+        
+        <div class="breadcrumb reveal-fade-up">
+          <a href="/">Home</a> <span class="separator">&rsaquo;</span>
+          <a href="/blog">Blog</a> <span class="separator">&rsaquo;</span>
+          <span class="current-page">Article</span>
+        </div>
+        
+        <div class="meta-badges reveal-fade-up" style="transition-delay: 0.1s;">
+          <span class="category-badge">{category}</span>
+        </div>
+        
+        <h1 class="banner-title reveal-fade-up" style="transition-delay: 0.2s;" set:html={post.title.rendered} />
+        
+        <div class="banner-meta reveal-fade-up" style="transition-delay: 0.3s;">
+          <span class="meta-item">By <strong>{authorName}</strong></span>
+          <span class="meta-dot">&bull;</span>
+          <span class="meta-item">{formatDate(post.date)}</span>
+          <span class="meta-dot">&bull;</span>
+          <span class="meta-item read-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            {readingTime}
+          </span>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="container section">
+      <div class="blog-layout">
+        
+        <!-- Main Article Content -->
+        <main class="blog-content prose" id="article-content" set:html={post.content.rendered} />
+        
+        <!-- Sidebar CTA -->
+        <aside class="sidebar">
+          <div class="sticky-container">
+            <div class="premium-cta-card">
+              <div class="chess-accent-top"></div>
+              <span class="cta-subtitle">VENTURE CHESS ACADEMY</span>
+              <h3 class="cta-title">Master the Game of <span class="highlight">Chess</span></h3>
+              <p class="cta-description">Take your chess skills to the next level with our expert coaching, offline classes, and competitive tournaments.</p>
+              <a href="/contact-us" class="cta-action">
+                Talk to Our Experts <span class="arrow">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- Related Posts Section -->
+    {relatedPosts.length > 0 && (
+      <section class="related-posts section">
+        <div class="container">
+          <div class="related-header text-center">
+            <h2 class="text-h2">Related Articles</h2>
+            <p>Continue exploring our expert chess insights and guides.</p>
+          </div>
+          <div class="related-grid">
+            {relatedPosts.map((relatedPost, index) => {
+              const delay = 0.1 * index;
+              const relatedImage = relatedPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/placeholder-blog.jpg';
+              return (
+                <a href={`/blog/${relatedPost.slug}`} class="related-card reveal-fade-up" style={`transition-delay: ${delay}s;`}>
+                  <div class="related-img-wrap">
+                    <img src={relatedImage} alt={relatedPost.title.rendered.replace(/<[^>]+>/g, '')} />
+                  </div>
+                  <div class="related-content">
+                    <h4 set:html={relatedPost.title.rendered} />
+                    <span class="read-article-link">Read Article &rarr;</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const contentArea = document.getElementById('article-content');
+    
+    // FAQ Accordion Enhancement
+    if (contentArea) {
+      const ekFaqElements = contentArea.querySelectorAll('.elementskit-single-faq');
+      if (ekFaqElements.length > 0) {
+        ekFaqElements.forEach(faq => {
+          const header = faq.querySelector('.elementskit-faq-header');
+          const body = faq.querySelector('.elementskit-faq-body');
+          if (header && body) {
+            body.style.display = 'none';
+            header.style.cursor = 'pointer';
+            header.classList.add('premium-accordion-header');
+            body.classList.add('premium-accordion-body');
+            
+            header.addEventListener('click', () => {
+              const isOpen = body.style.display === 'block';
+              body.style.display = isOpen ? 'none' : 'block';
+              header.classList.toggle('is-active', !isOpen);
+            });
+          }
+        });
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Base Layout */
+  .blog-post {
+    background-color: #ffffff;
+  }
+
+  /* Banner Section */
+  .blog-banner {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 200px; /* Accounts for fixed navbar */
+    padding-bottom: 120px;
+    color: #ffffff;
+  }
+
+  .banner-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumb {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .breadcrumb a {
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: #ffffff;
+  }
+
+  .separator {
+    margin: 0 0.5rem;
+    color: #94a3b8;
+  }
+  
+  .current-page {
+    color: #ffffff;
+  }
+
+  /* Badges & Meta */
+  .meta-badges {
+    margin-bottom: 1.5rem;
+  }
+
+  .category-badge {
+    display: inline-block;
+    border: 1px solid rgba(254, 240, 138, 0.4);
+    background-color: rgba(254, 240, 138, 0.1);
+    color: #fef08a; /* Yellow/Gold accent for dark bg */
+    padding: 0.4rem 1.2rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .banner-title {
+    color: #ffffff;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .banner-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: #e2e8f0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .meta-dot {
+    color: #64748b;
+  }
+
+  .read-time {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Content Layout */
+  .blog-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 1024px) {
+    .blog-layout {
+      grid-template-columns: 1fr 360px; /* Main content and Sidebar */
+      align-items: start;
+    }
+  }
+
+  /* Main Prose Content */
+  .blog-content {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: #334155;
+    font-family: var(--font-body);
+  }
+
+  .prose :global(h1),
+  .prose :global(h2),
+  .prose :global(h3),
+  .prose :global(h4),
+  .prose :global(h5),
+  .prose :global(h6) {
+    color: #0f172a;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    font-weight: 700;
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  .prose :global(h2) { font-size: 2.2rem; }
+  .prose :global(h3) { font-size: 1.6rem; }
+
+  .prose :global(p) {
+    margin-bottom: 1.75rem;
+  }
+
+  .prose :global(p:first-of-type) {
+    font-size: 1.35rem;
+    color: #1e293b;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .prose :global(a) {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 2px solid #fef08a;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .prose :global(a:hover) {
+    background-color: #fefce8;
+    border-color: var(--color-primary);
+  }
+
+  .prose :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 3rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+  }
+
+  .prose :global(li) {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+  }
+  
+  .prose :global(li::marker) {
+    color: var(--color-secondary);
+    font-weight: 700;
+  }
+
+  .prose :global(blockquote) {
+    position: relative;
+    border-left: none;
+    padding: 2.5rem 3rem;
+    margin: 3rem 0;
+    font-style: italic;
+    color: #0f172a;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    background-color: #f8fafc;
+    border-radius: 16px;
+    text-align: center;
+  }
+
+  .prose :global(blockquote::before) {
+    content: "“";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 5rem;
+    line-height: 1;
+    color: #cbd5e1;
+    font-family: serif;
+    opacity: 0.5;
+  }
+
+  /* FAQ Accordions generated by JS */
+  :global(.premium-accordion-header) {
+    background-color: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  :global(.premium-accordion-header:hover) {
+    background-color: #f1f5f9;
+  }
+  :global(.premium-accordion-header.is-active) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  :global(.premium-accordion-body) {
+    border: 1px solid #f1f5f9;
+    border-top: none;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-color: #ffffff;
+  }
+
+  /* CTA Sidebar */
+  .sticky-container {
+    position: sticky;
+    top: 120px;
+  }
+
+  .premium-cta-card {
+    background-color: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chess-accent-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+
+  .cta-subtitle {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-title {
+    font-size: 1.8rem;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  .highlight {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+  }
+  
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background-color: #fef08a; /* Yellow highlight */
+    z-index: -1;
+    border-radius: 4px;
+  }
+
+  .cta-description {
+    font-size: 1rem;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+
+  .cta-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 1.2rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+  }
+
+  .cta-action:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+
+  .arrow {
+    margin-left: 0.75rem;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-action:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Related Posts Section */
+  .related-posts {
+    background-color: #f8fafc;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    margin-top: 4rem;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .related-header {
+    margin-bottom: 3rem;
+  }
+
+  .related-header p {
+    color: #64748b;
+    font-size: 1.1rem;
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .related-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #f1f5f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .related-img-wrap {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .related-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .related-card:hover .related-img-wrap img {
+    transform: scale(1.05);
+  }
+
+  .related-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .related-content h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-article-link {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    transition: gap 0.3s ease;
+  }
+
+  .related-card:hover .read-article-link {
+    gap: 0.25rem;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .blog-banner {
+      padding-top: 180px; /* Increased to fix navbar overlap on mobile */
+      padding-bottom: 60px;
+    }
+    .banner-content {
+      padding: 0 1rem;
+    }
+    .blog-layout {
+      gap: 2.5rem;
+      padding: 0 0.5rem; /* Additional padding for mobile readability */
+    }
+    .blog-content {
+      padding: 0 0.5rem;
+      overflow-wrap: break-word; /* Ensure long words don't overflow */
+      word-break: break-word;
+    }
+    .prose :global(p:first-of-type) {
+      font-size: 1.15rem;
+    }
+    .prose :global(blockquote) {
+      padding: 2rem 1.5rem;
+      font-size: 1.2rem;
+    }
+    .prose :global(ul),
+    .prose :global(ol) {
+      padding-left: 1.5rem;
+    }
+    .prose :global(img) {
+      margin: 2rem 0;
+      border-radius: 12px;
+    }
+  }
+</style>

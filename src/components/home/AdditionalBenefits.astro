@@ -1,0 +1,197 @@
+---
+// AdditionalBenefits.astro
+---
+
+<section class="section benefits-section">
+  <div class="container">
+    <div class="benefits-header reveal-fade-up">
+      <h6 class="subtitle">WE ALSO PROVIDE</h6>
+      <h2 class="text-h1 title">In every chess position,<br/>there are opportunities</h2>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal-fade-up" style="transition-delay: 0.1s;">
+        <div class="benefit-bg" style="background-image: url('https://venturechessacademy.com/wp-content/uploads/2026/02/school-boys-playing-chess-e1698161918720.jpg');"></div>
+        <div class="benefit-overlay"></div>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Flexible Weekly Schedule</h3>
+          <a href="/contact-us/" class="benefit-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal-fade-up" style="transition-delay: 0.2s;">
+        <div class="benefit-bg" style="background-image: url('https://venturechessacademy.com/wp-content/uploads/2026/02/selective-focus-of-wooden-chess-board-with-seniors-playing-chess-at-home-e1697916079176.jpg');"></div>
+        <div class="benefit-overlay"></div>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Weekly Tournaments</h3>
+          <a href="/contact-us/" class="benefit-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal-fade-up" style="transition-delay: 0.3s;">
+        <div class="benefit-bg" style="background-image: url('https://venturechessacademy.com/wp-content/uploads/2026/02/smart-boy-playing-chess-and-staring-at-the-chessboard-e1698161801842.jpg');"></div>
+        <div class="benefit-overlay"></div>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Weekly Puzzle Quest</h3>
+          <a href="/contact-us/" class="benefit-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal-fade-up" style="transition-delay: 0.4s;">
+        <div class="benefit-bg" style="background-image: url('https://venturechessacademy.com/wp-content/uploads/2026/02/game-of-chess-e1698161986705.jpg');"></div>
+        <div class="benefit-overlay"></div>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Custom Position Drills</h3>
+          <a href="/contact-us/" class="benefit-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal-fade-up" style="transition-delay: 0.5s;">
+        <div class="benefit-bg" style="background-image: url('https://venturechessacademy.com/wp-content/uploads/2026/01/one-to-one-class.webp');"></div>
+        <div class="benefit-overlay"></div>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Assignments</h3>
+          <a href="/contact-us/" class="benefit-link">Learn More</a>
+        </div>
+      </div>
+
+      <div class="benefit-card reveal-fade-up" style="transition-delay: 0.6s;">
+        <div class="benefit-bg" style="background-image: url('https://venturechessacademy.com/wp-content/uploads/2026/02/teenager-playing-chess.jpg');"></div>
+        <div class="benefit-overlay"></div>
+        <div class="benefit-content">
+          <h3 class="benefit-title">Video Courses</h3>
+          <a href="/contact-us/" class="benefit-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits-section {
+    padding: 8rem 0;
+    background-color: var(--color-surface);
+  }
+
+  .benefits-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .title {
+    color: var(--color-primary);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .benefits-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .benefit-card {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    cursor: pointer;
+  }
+
+  .benefit-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.6s var(--ease-out);
+    z-index: 1;
+  }
+
+  .benefit-card:hover .benefit-bg {
+    transform: scale(1.1);
+  }
+
+  .benefit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+    z-index: 2;
+    transition: background 0.4s var(--ease-out);
+  }
+
+  .benefit-card:hover .benefit-overlay {
+    background: linear-gradient(to top, rgba(89, 34, 24, 0.9) 0%, rgba(89, 34, 24, 0.4) 50%, rgba(0,0,0,0) 100%);
+  }
+
+  .benefit-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .benefit-title {
+    color: #ffffff;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+
+  .benefit-link {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s var(--ease-out);
+  }
+
+  .benefit-card:hover .benefit-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .benefit-link:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+  }
+</style>

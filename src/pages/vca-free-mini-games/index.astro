@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MagneticButton from '../../components/ui/MagneticButton.astro';
+import PageHeader from '../../components/ui/PageHeader.astro';
+
+const games = [
+  {
+    title: 'Chess Coordinate Trainer',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/04/Chess-Coordinate-Trainer.png',
+    link: 'https://chess-vision-trainer-rosy.vercel.app/'
+  },
+  {
+    title: 'Blindfold Trainer',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/04/Blindfold-chess-Trainer.png',
+    link: 'https://blindfold-chess-trainer-t4bu.vercel.app/'
+  },
+  {
+    title: 'JigSaw Chess',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/04/JigSaw-Chess.png',
+    link: 'https://jig-saw-chess.vercel.app/'
+  },
+  {
+    title: 'Chess quiz',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/04/Chess-quiz-2.png',
+    link: 'https://chess-quiz-pi.vercel.app/'
+  },
+  {
+    title: 'Chess Maze',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/04/Chess-Maze.png',
+    link: 'https://chessmaze-xi.vercel.app/'
+  },
+  {
+    title: 'Memory Trainer',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/04/Memory-Trainer-2.png',
+    link: 'https://memory-trainer-vca.vercel.app/'
+  },
+  {
+    title: 'Dice Chess',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/06/dice-chess-1.webp',
+    link: 'https://dice-chess-vca.vercel.app/'
+  },
+  {
+    title: 'Snake Chess',
+    image: 'https://venturechessacademy.com/wp-content/uploads/2026/08/snake-chess-3.webp',
+    link: 'https://snake-chess-vca.vercel.app/'
+  }
+];
+---
+
+<BaseLayout title="vca free mini games | play chess online | play chess now | free chess mini games online" description="Explore VCA free mini chess games to practice tactics, improve focus, and sharpen your skills with fun, interactive challenges.">
+  <PageHeader title="Free Mini Games" subtitle="PLAY & LEARN" />
+
+  <section class="section games-content">
+    <div class="container">
+      <div class="games-grid">
+        {games.map((game, index) => (
+          <div class="game-card reveal-fade-up" style={`transition-delay: ${0.05 * index}s;`}>
+            <div class="game-image-wrapper">
+              <img src={game.image} alt={game.title} class="game-image" />
+            </div>
+            <h3 class="text-h3 game-title">{game.title}</h3>
+            <MagneticButton href={game.link} text="Play Now" variant="primary" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .games-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  @media (min-width: 640px) {
+    .games-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .games-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .game-card {
+    background-color: var(--color-surface);
+    border-radius: var(--radius-2xl);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    height: 100%;
+  }
+
+  .game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .game-image-wrapper {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: var(--color-bg);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .game-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  .game-title {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

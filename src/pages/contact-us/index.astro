@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MagneticButton from '../../components/ui/MagneticButton.astro';
+import PageHeader from '../../components/ui/PageHeader.astro';
+---
+
+<BaseLayout title="Contact Chess Academy | get in touch" description="Contact Venture Chess Academy for online chess classes, trial sessions, and expert coaching from FIDE-rated trainers.">
+  <PageHeader title="Contact Us" subtitle="GET IN TOUCH" />
+
+  <section class="section contact-content">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info reveal-fade-up">
+          <h2 class="text-h2 text-primary mb-4">Let's connect</h2>
+          <p class="mb-8">Have a question about our classes or want to enroll your child? We'd love to hear from you.</p>
+
+          <div class="info-items">
+            <div class="info-item">
+              <h4 class="info-label">Address</h4>
+              <p>HEGDE Arcade, Main Road, Puttur, Karnataka, India 574201</p>
+            </div>
+            
+            <div class="info-item">
+              <h4 class="info-label">Phone</h4>
+              <p><a href="tel:+919567027370">+91 95670 27370</a></p>
+            </div>
+
+            <div class="info-item">
+              <h4 class="info-label">Email</h4>
+              <p><a href="mailto:venturechessacademy@gmail.com">venturechessacademy@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper reveal-fade-up" style="transition-delay: 0.2s;">
+          <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault();">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Name" />
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="Email" />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+91" />
+            </div>
+
+            <div class="form-group">
+              <label for="kidsName">Kids Name</label>
+              <input type="text" id="kidsName" name="kidsName" required placeholder="Kids Name" />
+            </div>
+
+            <div class="form-group">
+              <label for="kidsAge">Kids Age</label>
+              <input type="number" id="kidsAge" name="kidsAge" required placeholder="Kids Age" />
+            </div>
+
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" name="country" required>
+                <option value="" disabled selected>Select Country Name</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="UAE">UAE</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" required placeholder="City" />
+            </div>
+
+            <div class="form-group">
+              <label for="fideProfile">Share FIDE Profile</label>
+              <input type="text" id="fideProfile" name="fideProfile" placeholder="Share FIDE Profile" />
+            </div>
+
+            <div class="form-group">
+              <label>Kids Prior Experience</label>
+              <div class="radio-group">
+                <label><input type="radio" name="experience" value="New to Chess" required /> New to Chess</label>
+                <label><input type="radio" name="experience" value="Taken Class / Plays Well" /> Taken Class / Plays Well</label>
+                <label><input type="radio" name="experience" value="Played Tournaments" /> Played Tournaments</label>
+                <label><input type="radio" name="experience" value="Other" /> Other</label>
+              </div>
+            </div>
+
+            <MagneticButton href="" text="Submit" variant="primary" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+
+  .mb-8 {
+    margin-bottom: 3rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact-info {
+    background-color: var(--color-surface);
+    padding: 3rem;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-label {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .info-item p, .info-item a {
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+
+  .info-item a:hover {
+    color: var(--color-primary);
+  }
+
+  .contact-form-wrapper {
+    background-color: var(--color-surface);
+    padding: 3rem;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background-color: var(--color-bg);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .radio-group label {
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .radio-group input[type="radio"] {
+    width: auto;
+    padding: 0;
+    margin: 0;
+    accent-color: var(--color-primary);
+  }
+</style>

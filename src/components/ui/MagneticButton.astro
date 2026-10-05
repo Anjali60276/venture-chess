@@ -1,0 +1,136 @@
+---
+export interface Props {
+  href?: string;
+  text: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  className?: string;
+}
+
+const { href, text, variant = 'primary', className = '' } = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag href={href} class={`magnetic-btn btn-${variant} ${className}`} data-magnetic>
+  <span class="btn-text">{text}</span>
+  <span class="btn-bg"></span>
+</Tag>
+
+<style>
+  .magnetic-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    overflow: hidden;
+    transition: color 0.3s var(--ease-out);
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .btn-text {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s var(--ease-out);
+    display: inline-block;
+  }
+
+  .btn-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-pill);
+    z-index: -1;
+    transition: transform 0.4s var(--ease-spring);
+  }
+
+  /* Variants */
+  .btn-primary {
+    color: var(--color-surface);
+  }
+  .btn-primary .btn-bg {
+    background-color: var(--color-primary);
+  }
+
+  .btn-secondary {
+    color: var(--color-primary);
+  }
+  .btn-secondary .btn-bg {
+    background-color: var(--color-secondary);
+  }
+
+  .btn-outline {
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+  }
+  .btn-outline .btn-bg {
+    background-color: var(--color-primary);
+    transform: translateY(101%); /* Hidden initially */
+  }
+  .btn-outline:hover {
+    color: var(--color-surface);
+  }
+  .btn-outline:hover .btn-bg {
+    transform: translateY(0);
+  }
+
+  /* Hover states for solid buttons */
+  .btn-primary:hover .btn-bg,
+  .btn-secondary:hover .btn-bg {
+    transform: scale(1.05);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const isTouch = matchMedia('(hover: none), (pointer: coarse)').matches;
+    if (isTouch) return;
+
+    const magneticElements = document.querySelectorAll('.magnetic-btn');
+
+    magneticElements.forEach(el => {
+      const btn = el as HTMLElement;
+      const text = btn.querySelector('.btn-text') as HTMLElement;
+      const bg = btn.querySelector('.btn-bg') as HTMLElement;
+      
+      let bounding = btn.getBoundingClientRect();
+
+      // Update bounds on resize/scroll
+      window.addEventListener('resize', () => {
+        bounding = btn.getBoundingClientRect();
+      });
+
+      btn.addEventListener('mousemove', (e) => {
+        bounding = btn.getBoundingClientRect();
+        const x = e.clientX - bounding.left;
+        const y = e.clientY - bounding.top;
+        
+        // Calculate offset from center (-1 to 1)
+        const xCenter = (x - bounding.width / 2) / (bounding.width / 2);
+        const yCenter = (y - bounding.height / 2) / (bounding.height / 2);
+        
+        // Magnetic pull limits (max px)
+        const pull = 10;
+        
+        btn.style.transform = `translate(${xCenter * pull}px, ${yCenter * pull}px)`;
+        if(text) text.style.transform = `translate(${xCenter * (pull/2)}px, ${yCenter * (pull/2)}px)`;
+        if(bg) bg.style.transform = `scale(1.05) translate(${xCenter * 2}px, ${yCenter * 2}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = `translate(0px, 0px)`;
+        if(text) text.style.transform = `translate(0px, 0px)`;
+        if(bg) bg.style.transform = `scale(1) translate(0px, 0px)`;
+      });
+    });
+  });
+</script>
