@@ -1,30 +1,24 @@
 ---
 import { courses } from "../../data/courses";
-import MagneticButton from "../ui/MagneticButton.astro";
 ---
 
 <section class="section curriculum-section">
   <div class="container">
-    <div class="curriculum-header reveal-fade-up">
+    <div class="section-header-row reveal-fade-up">
       <h2 class="text-display title">SYLLABUS</h2>
-      <MagneticButton
-        href="/chess-academy-karnataka-india/"
-        text="View All Courses"
-        variant="primary"
-      />
+      <a href="/chess-academy-karnataka-india/" class="btn-view-all">
+        View All Courses <span class="arrow">→</span>
+      </a>
     </div>
 
     <div class="courses-grid">
       {
         courses.map((course, index) => (
           <div
-            class={`course-card hover-lift reveal-fade-up ${index % 2 !== 0 ? "offset-card" : ""}`}
-            style={`transition-delay: ${(index % 2) * 0.1}s;`}
+            class="course-card reveal-fade-up"
+            style={`transition-delay: ${(index % 3) * 0.1}s;`}
           >
-            <div
-              class="course-image hover-image-zoom"
-              data-cursor-text="EXPLORE"
-            >
+            <div class="course-image">
               <img src={course.image} alt={course.name} />
             </div>
             <div class="course-content">
@@ -35,7 +29,7 @@ import MagneticButton from "../ui/MagneticButton.astro";
                 href={`/chess-academy-karnataka-india/#${course.id}`}
                 class="course-link"
               >
-                JOIN NOW <span class="arrow">→</span>
+                Join Now <span class="arrow">→</span>
               </a>
             </div>
           </div>
@@ -47,62 +41,107 @@ import MagneticButton from "../ui/MagneticButton.astro";
 
 <style>
   .curriculum-section {
-    padding: 8rem 0;
     background-color: var(--color-bg);
   }
 
-  .curriculum-header {
+  /* Header Row */
+  .section-header-row {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2rem;
-    margin-bottom: 6rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
   }
 
   @media (min-width: 768px) {
-    .curriculum-header {
+    .section-header-row {
       flex-direction: row;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
     }
   }
 
   .title {
     color: var(--color-primary);
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(1.85rem, 4vw, 3rem);
+    margin: 0;
   }
 
+  .btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out);
+    white-space: nowrap;
+  }
+
+  .btn-view-all:hover {
+    background-color: #3a1610; /* Darker brown */
+    transform: translateY(-2px);
+  }
+
+  .btn-view-all .arrow {
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .btn-view-all:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Grid Layout */
   .courses-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem 2rem;
+    gap: var(--space-md);
   }
 
   @media (min-width: 768px) {
     .courses-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .offset-card {
-      margin-top: 0;
+  @media (min-width: 1024px) {
+    .courses-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
+  /* Card Layout */
   .course-card {
+    position: relative;
     background-color: var(--color-surface);
-    border-radius: var(--radius-2xl);
-    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-sm);
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
+    transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
+  }
+
+  .course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
   }
 
   .course-image {
     width: 100%;
-    height: 300px;
-    border-radius: var(--radius-xl);
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-md);
+    background-color: var(--color-border);
   }
 
   .course-image img {
@@ -116,46 +155,76 @@ import MagneticButton from "../ui/MagneticButton.astro";
     flex-direction: column;
     align-items: flex-start;
     flex: 1;
+    padding: 0 var(--space-xs);
   }
 
+  /* Typography */
   .course-level {
     font-family: var(--font-body);
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
-  }
-
-  .course-name {
-    font-size: 2.5rem;
-    color: var(--color-primary);
+    color: #d4621c; /* Brand orange */
     margin-bottom: 0.5rem;
   }
 
+  .course-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
   .course-desc {
-    margin-bottom: 2rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
     flex-grow: 1;
   }
 
+  /* Join Now Link */
   .course-link {
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-primary);
+    color: var(--color-surface);
+    background-color: var(--color-primary);
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     margin-top: auto;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: static; 
+    transition: background-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+  }
+
+  /* Make entire card clickable */
+  .course-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   .course-link .arrow {
-    transition: transform 0.3s var(--ease-out);
+    transition: transform var(--duration-normal) var(--ease-out);
   }
 
-  .course-link:hover .arrow {
-    transform: translateX(5px);
+  .course-card:hover .course-link {
+    background-color: #d4621c; 
+    color: var(--color-surface);
+    transform: translateY(-2px);
+  }
+
+  .course-card:hover .course-link .arrow {
+    transform: translateX(4px);
   }
 </style>

@@ -4,7 +4,7 @@ import { faqs } from '../../data/faqs';
 
 <section class="section faq-section">
   <div class="container">
-    <div class="faq-header reveal-fade-up">
+    <div class="section-header reveal-fade-up">
       <h2 class="text-h1 title">Your top questions<br/>answered with a smile</h2>
       <p>Here you can find answers to frequently asked questions about our programs and services.</p>
     </div>
@@ -33,21 +33,14 @@ import { faqs } from '../../data/faqs';
 
 <style>
   .faq-section {
-    padding: 6rem 0 2rem;
     background-color: var(--color-surface);
   }
 
-  .faq-header {
-    text-align: center;
-    margin-bottom: 5rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  
 
   .title {
     color: var(--color-primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-md);
   }
 
   .faq-accordion {
@@ -68,11 +61,6 @@ import { faqs } from '../../data/faqs';
     padding: 2rem 0;
     text-align: left;
     color: var(--color-primary);
-    transition: color 0.3s;
-  }
-
-  .faq-question:hover {
-    color: var(--color-secondary);
   }
 
   .question-text {

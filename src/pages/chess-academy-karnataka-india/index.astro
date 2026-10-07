@@ -56,7 +56,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
           </ul>
         </div>
         <div class="advantages-image image-reveal-wrapper">
-          <img src="https://venturechessacademy.com/wp-content/uploads/2026/02/Chess-Academy-3.webp" alt="Learning Chess Online" class="rounded-xl shadow-lg"/>
+          <img src="https://venturechessacademy.com/wp-content/uploads/2026/03/Chess-Academy-2.webp" alt="Learning Chess Online" class="rounded-xl shadow-lg"/>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
 
   <section class="section extra-content">
     <div class="container">
-      <div class="we-provide-header reveal-fade-up text-center mb-5">
+      <div class="we-section-header reveal-fade-up text-center mb-5">
         <h2 class="text-h1 title" style="text-transform: uppercase; font-weight: 800; line-height: 1;">We Also Provide</h2>
       </div>
 
@@ -122,11 +122,11 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     <div class="container">
       <div class="why-choose-grid">
         <div class="why-text reveal-fade-up">
-          <h2 class="text-h1 title text-surface mb-4" style="text-transform: uppercase; font-weight: 800; line-height: 1;">Why Choose Venture Chess Academy?</h2>
-          <p class="text-surface-muted mb-4">Venture Chess Academy Karnataka, India stands out as the premier chess institute online for these undeniable reasons:</p>
+          <h2 class="text-h1 title mb-4" style="text-transform: uppercase; font-weight: 800; line-height: 1;">Why Choose Venture Chess Academy?</h2>
+          <p class="text-light mb-4">Venture Chess Academy Karnataka, India stands out as the premier chess institute online for these undeniable reasons:</p>
           <div class="mt-6">
-            <p class="text-surface mb-4">Let your child explore 60-minute free interactive session with FIDE Rated coaches.</p>
-            <MagneticButton href="/appointment/" text="Enroll Here" variant="secondary" />
+            <p class="text-primary mb-4">Let your child explore 60-minute free interactive session with FIDE Rated coaches.</p>
+            <MagneticButton href="/appointment/" text="Enroll Here" variant="primary" />
           </div>
         </div>
         <div class="why-features reveal-fade-up" style="transition-delay: 0.2s;">
@@ -147,14 +147,14 @@ import PageHeader from '../../components/ui/PageHeader.astro';
 
 <style>
   /* We Provide Section */
-  .mb-5 { margin-bottom: 3rem; }
-  .mb-6 { margin-bottom: 4rem; }
+  .mb-5 { margin-bottom: var(--space-lg); }
+  .mb-6 { margin-bottom: var(--space-lg); }
   .mt-4 { margin-top: 1.5rem; }
 
   .features-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-md);
   }
 
   @media (min-width: 640px) {
@@ -179,10 +179,10 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    padding: 1.5rem;
+    padding: var(--space-md);
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-sm);
     box-shadow: var(--shadow-sm);
     transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
   }
@@ -219,12 +219,12 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     backdrop-filter: blur(10px);
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: var(--radius-2xl);
-    padding: 2rem;
+    padding: var(--space-md);
   }
 
   @media (min-width: 768px) {
     .premium-text-box {
-      padding: 3rem;
+      padding: var(--space-md);
     }
   }
 
@@ -238,8 +238,8 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .text-columns {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
   }
 
   @media (min-width: 768px) {
@@ -257,7 +257,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .highlight-box {
     background: var(--color-primary);
     color: var(--color-surface);
-    padding: 2rem;
+    padding: var(--space-md);
     border-radius: var(--radius-xl);
   }
 
@@ -272,7 +272,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: var(--space-md);
     margin-top: 1rem;
   }
 
@@ -288,25 +288,25 @@ import PageHeader from '../../components/ui/PageHeader.astro';
 
   /* Why Choose Section */
   .why-choose-section {
-    background-color: var(--color-primary);
-    color: var(--color-surface);
-    padding: 6rem 0;
+    background-color: var(--color-surface);
+    color: var(--color-primary);
   }
 
-  .text-surface {
-    color: var(--color-surface) !important;
-  }
-
-  .text-surface-muted {
-    color: rgba(255, 255, 255, 0.8) !important;
+  .text-light {
+    color: var(--color-text-light);
     font-size: 1.1rem;
     line-height: 1.6;
+  }
+  
+  .text-primary {
+    color: var(--color-primary);
+    font-weight: 500;
   }
 
   .why-choose-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: var(--space-lg);
     align-items: center;
   }
 
@@ -319,26 +319,28 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .premium-check-list {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: var(--space-md);
   }
 
   .premium-check-list li {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    gap: var(--space-sm);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
     padding: 1.2rem 1.5rem;
     border-radius: var(--radius-lg);
     font-size: 1.1rem;
     font-weight: 500;
+    color: var(--color-text);
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s var(--ease-out);
   }
 
   .premium-check-list li:hover {
-    background: rgba(255, 255, 255, 0.1);
     transform: translateX(10px);
     border-color: var(--color-secondary);
+    box-shadow: var(--shadow-md);
   }
 
   .premium-check-list li::before {
@@ -357,13 +359,13 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   }
   
   .mb-4 {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-md);
   }
 
   .courses-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: var(--space-lg);
   }
 
   @media (min-width: 640px) {
@@ -404,7 +406,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   }
 
   .course-content {
-    padding: 2rem;
+    padding: var(--space-md);
   }
 
   .course-level {
@@ -412,12 +414,12 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     font-weight: 700;
     color: var(--color-secondary);
     letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--space-xs);
   }
 
   .course-name {
     color: var(--color-primary);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
   }
 
   .course-desc {
@@ -438,7 +440,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .advantages-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: var(--space-lg);
     align-items: center;
   }
 
@@ -452,7 +454,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-md);
   }
 
   .advantages-list li {
@@ -478,9 +480,9 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .service-detail-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: var(--space-lg);
     align-items: center;
-    padding: 6rem 0;
+    
     border-bottom: 1px solid var(--color-border);
   }
 

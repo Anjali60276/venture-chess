@@ -5,7 +5,7 @@ import MagneticButton from '../ui/MagneticButton.astro';
 
 <section class="section services-section">
   <div class="container">
-    <div class="services-header reveal-fade-up">
+    <div class="section-header reveal-fade-up">
       <h6 class="subtitle">WHAT WE OFFER</h6>
       <h2 class="text-h1 title">In every chess position,<br/>there are opportunities</h2>
     </div>
@@ -34,20 +34,17 @@ import MagneticButton from '../ui/MagneticButton.astro';
 
 <style>
   .services-section {
-    padding: 8rem 0;
+    
   }
 
-  .services-header {
-    text-align: center;
-    margin-bottom: 6rem;
-  }
+  
 
   .subtitle {
     font-family: var(--font-body);
     font-size: 1rem;
     letter-spacing: 0.1em;
     color: var(--color-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
   }
 
   .title {
@@ -63,8 +60,8 @@ import MagneticButton from '../ui/MagneticButton.astro';
   .service-row {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 3rem 0;
+    gap: var(--space-md);
+    
     border-bottom: 1px solid var(--color-border);
     transition: background-color 0.4s var(--ease-out), padding 0.4s var(--ease-out);
     position: relative;
@@ -88,7 +85,7 @@ import MagneticButton from '../ui/MagneticButton.astro';
 
   .service-content {
     display: flex;
-    gap: 2rem;
+    gap: var(--space-md);
   }
 
   .service-number {
@@ -101,7 +98,7 @@ import MagneticButton from '../ui/MagneticButton.astro';
   .service-title {
     font-size: 2rem;
     color: var(--color-primary);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
   }
 
   .service-desc {

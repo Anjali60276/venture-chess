@@ -3,6 +3,13 @@
 :root {
   /* Colors - Inherited from existing brand but modernized */
   --color-primary: #592218; /* Dark brown/red */
+  --color-primary-rgb: 89, 34, 24;
+  --color-primary-soft: rgba(89, 34, 24, 0.15); /* 15% opacity */
+  --color-primary-hover: rgba(89, 34, 24, 0.08); /* 8% opacity */
+  --color-nav-bg: #FDF0E0; /* Cream */
+  --color-nav-pill: #FDE6CB; /* Soft peach */
+  --color-nav-pill-hover: rgba(253, 230, 203, 0.5); /* 50% peach */
+  --color-nav-active-text: #B65617; /* Burnt orange */
   --color-secondary: #facc15; /* Yellow accent */
   --color-bg: #f8fafc;
   --color-surface: #ffffff;
@@ -33,6 +40,21 @@
   --duration-fast: 0.15s;
   --duration-normal: 0.3s;
   --duration-slow: 0.6s;
+  /* Unified Spacing Scale (Mobile Default) */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 3rem; /* Standardized section vertical padding */
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* Unified Spacing Scale (Tablet/Desktop) */
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 4rem; /* Standardized section vertical padding */
+  }
 }
 
 

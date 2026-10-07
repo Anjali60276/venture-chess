@@ -137,19 +137,12 @@ import MagneticButton from "../ui/MagneticButton.astro";
   .hero-section {
     position: relative;
     width: 100%;
-    min-height: 85vh;
     display: flex;
     align-items: center;
-    padding-top: 140px;
-    padding-bottom: 5rem;
+    padding-top: 140px; /* Space for fixed navbar */
+    padding-bottom: var(--space-xl); /* Standardized bottom padding matching section spacing */
     overflow: hidden;
     background-color: #fffcf9;
-  }
-
-  @media (max-width: 767px) {
-    .hero-section {
-      padding-bottom: 25rem;
-    }
   }
 
   /* Full-bleed background image container layer */

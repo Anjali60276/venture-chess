@@ -4,34 +4,46 @@ import { testimonials } from '../../data/testimonials';
 
 <section class="section testimonials-section">
   <div class="container">
-    <div class="testimonials-header reveal-fade-up">
-      <h6 class="subtitle">OUR TESTIMONIALS</h6>
-      <h2 class="text-h1 title">What Students Say</h2>
+    <div class="section-header reveal-fade-up">
+      <div class="header-content">
+        <div class="title-group">
+          <h6 class="subtitle">OUR TESTIMONIALS</h6>
+          <h2 class="title">What Students Say</h2>
+        </div>
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn" aria-label="Previous testimonial" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="slider-btn next-btn" aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div class="testimonial-slider reveal-fade-up" style="transition-delay: 0.2s;">
-      <div class="testimonial-track" id="testimonialTrack">
+    <div class="carousel-container reveal-fade-up" style="transition-delay: 0.1s;">
+      <div class="carousel-track" id="testimonialTrack">
         {testimonials.map((t) => (
-          <div class="testimonial-slide">
-            <div class="quote-icon">"</div>
-            <p class="quote-text">{t.quote}</p>
+          <div class="testimonial-card">
+            <div class="quote-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+            </div>
+            <div class="quote-text">{t.quote}</div>
             
-            <div class="author-info">
-              <div class="author-image">
-                <img src={t.image} alt={t.name} loading="lazy" />
+            <div class="card-footer">
+              <div class="author-avatar">
+                {t.image ? (
+                  <img src={t.image} alt={t.name} loading="lazy" />
+                ) : (
+                  <span class="avatar-initial">{t.name.charAt(0)}</span>
+                )}
               </div>
-              <div class="author-details">
-                <h4 class="author-name">{t.name}</h4>
-                <p class="author-type">{t.type}</p>
-              </div>
+              <div class="author-name">{t.name}</div>
             </div>
           </div>
         ))}
-      </div>
-      
-      <div class="slider-controls">
-        <button class="slider-btn prev-btn" aria-label="Previous testimonial">←</button>
-        <button class="slider-btn next-btn" aria-label="Next testimonial">→</button>
       </div>
     </div>
   </div>
@@ -39,171 +51,223 @@ import { testimonials } from '../../data/testimonials';
 
 <style>
   .testimonials-section {
-    padding: 8rem 0;
     background-color: var(--color-bg);
   }
 
-  .testimonials-header {
-    text-align: center;
-    margin-bottom: 5rem;
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 
   .subtitle {
     font-family: var(--font-body);
     font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0.1em;
     color: var(--color-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-xs);
   }
 
-  .title {
-    color: var(--color-primary);
+  .carousel-container {
+    /* Container wraps the track without breaking layout */
   }
 
-  .testimonial-slider {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
+  .carousel-track {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px 5px; /* Prevent shadow clipping */
+    margin: -10px -5px; /* Offset padding */
+  }
+  
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonial-card {
+    /* 1 card on mobile */
+    flex: 0 0 100%;
+    scroll-snap-align: start;
     background-color: var(--color-surface);
-    border-radius: var(--radius-2xl);
-    padding: 3rem 1.5rem;
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   }
 
   @media (min-width: 768px) {
-    .testimonial-slider {
-      padding: 5rem;
+    .testimonial-card {
+      /* 2 cards on tablet */
+      flex: 0 0 calc(50% - (var(--space-md) / 2));
     }
   }
 
-  .testimonial-track {
-    display: flex;
-    transition: transform 0.6s var(--ease-spring);
-  }
-
-  .testimonial-slide {
-    flex: 0 0 100%;
-    opacity: 0.3;
-    transition: opacity 0.6s;
-  }
-
-  .testimonial-slide.is-active {
-    opacity: 1;
+  @media (min-width: 1024px) {
+    .testimonial-card {
+      /* 3 cards on desktop */
+      flex: 0 0 calc(33.3333% - (var(--space-md) * 2 / 3));
+    }
   }
 
   .quote-icon {
-    font-family: var(--font-display);
-    font-size: 8rem;
-    line-height: 0.5;
     color: var(--color-secondary);
-    opacity: 0.3;
-    margin-bottom: 1rem;
+    width: 24px;
+    height: 24px;
+    margin-bottom: var(--space-md);
   }
 
   .quote-text {
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 3vw, 2rem);
-    color: var(--color-primary);
-    line-height: 1.4;
-    font-weight: 500;
-    margin-bottom: 3rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: var(--space-lg);
   }
 
-  .author-info {
+  .card-footer {
+    margin-top: auto;
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: var(--space-sm);
   }
 
-  .author-image {
-    width: 60px;
-    height: 60px;
+  .author-avatar {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     overflow: hidden;
+    background-color: #fce8d5; /* Soft peach fallback */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
-  .author-image img {
+  .author-avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .author-name {
-    font-size: 1.25rem;
-    color: var(--color-text);
-    margin-bottom: 0.25rem;
+  .avatar-initial {
+    color: #4a3b2c; /* Dark brown */
+    font-weight: 700;
+    font-size: 1.1rem;
   }
 
-  .author-type {
-    font-size: 0.9rem;
-    color: var(--color-text-light);
+  .author-name {
+    font-weight: 700;
+    color: #4a3b2c; /* Dark brown */
+    font-size: 0.95rem;
     margin: 0;
   }
 
+  /* Controls */
   .slider-controls {
     display: flex;
-    gap: 1rem;
-    margin-top: 3rem;
+    gap: 0.5rem;
+    /* Move up slightly to align with title visually */
+    margin-bottom: var(--space-xs);
   }
 
   .slider-btn {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 1px solid var(--color-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    background-color: var(--color-surface);
     color: var(--color-primary);
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
-  .slider-btn:hover {
-    background-color: var(--color-primary);
+  .slider-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .slider-btn:hover:not(:disabled) {
+    background-color: var(--color-secondary);
     color: var(--color-surface);
-    border-color: var(--color-primary);
+    border-color: var(--color-secondary);
+  }
+
+  .slider-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background-color: transparent !important;
+    color: var(--color-primary) !important;
+    border-color: var(--color-border) !important;
+  }
+
+  @media (max-width: 767px) {
+    .header-content {
+      display: block;
+    }
+    .slider-controls {
+      display: none; /* Hide arrows on mobile in favor of native swipe */
+    }
   }
 </style>
 
 <script>
   const initTestimonialSlider = () => {
     const track = document.getElementById('testimonialTrack');
-    // Important: Scope selectors to the testimonials section to avoid conflicts
-    const section = track?.closest('.testimonials-section');
-    if (!track || !section) return;
+    const prevBtn = document.querySelector('.testimonials-section .prev-btn') as HTMLButtonElement;
+    const nextBtn = document.querySelector('.testimonials-section .next-btn') as HTMLButtonElement;
+    if (!track) return;
 
-    const slides = section.querySelectorAll('.testimonial-slide');
-    const prevBtn = section.querySelector('.prev-btn');
-    const nextBtn = section.querySelector('.next-btn');
-    
-    if (slides.length === 0) return;
-
-    let currentIndex = 0;
-
-    const updateSlider = () => {
-      slides.forEach((slide, idx) => {
-        if (idx === currentIndex) {
-          slide.classList.add('is-active');
-        } else {
-          slide.classList.remove('is-active');
-        }
-      });
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // Calculate width of one card + gap to slide exactly one item
+    const getScrollAmount = () => {
+      const card = track.querySelector('.testimonial-card');
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return card ? (card as HTMLElement).offsetWidth + gap : 0;
     };
 
-    updateSlider(); // initial state
+    // Update disabled state for arrows when hitting the beginning/end
+    const updateButtons = () => {
+      if (!prevBtn || !nextBtn) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 5;
+      nextBtn.disabled = track.scrollLeft >= maxScroll - 5;
+    };
 
     prevBtn?.addEventListener('click', () => {
-      currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-      updateSlider();
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
     });
 
     nextBtn?.addEventListener('click', () => {
-      currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-      updateSlider();
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
     });
+
+    // Check button states after swiping completes
+    track.addEventListener('scroll', () => {
+      requestAnimationFrame(updateButtons);
+    }, { passive: true });
+
+    // Initial setup
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
   };
 
   initTestimonialSlider();

@@ -4,7 +4,7 @@
 
 <section class="section benefits-section">
   <div class="container">
-    <div class="benefits-header reveal-fade-up">
+    <div class="section-header reveal-fade-up">
       <h6 class="subtitle">WE ALSO PROVIDE</h6>
       <h2 class="text-h1 title">In every chess position,<br/>there are opportunities</h2>
     </div>
@@ -69,21 +69,18 @@
 
 <style>
   .benefits-section {
-    padding: 8rem 0;
+    
     background-color: var(--color-surface);
   }
 
-  .benefits-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
+  
 
   .subtitle {
     font-family: var(--font-body);
     font-size: 1rem;
     letter-spacing: 0.1em;
     color: var(--color-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-sm);
     text-transform: uppercase;
   }
 
@@ -94,7 +91,7 @@
   .benefits-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--space-md);
   }
 
   @media (min-width: 768px) {
@@ -164,7 +161,7 @@
     color: #ffffff;
     font-size: 1.75rem;
     line-height: 1.2;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-md);
     font-weight: 700;
   }
 

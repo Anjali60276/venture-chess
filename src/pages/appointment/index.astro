@@ -15,7 +15,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
           <p class="mb-4 text-center">Please select a time that works best for you to attend the demo session.</p>
           
           <div class="mock-calendar">
-            <div class="mock-calendar-header">
+            <div class="mock-section-header">
               <span class="mock-month">September 2026</span>
               <div class="mock-arrows">
                 <span>&lt;</span>
@@ -43,7 +43,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   }
 
   .mb-4 {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-md);
   }
 
   .mt-8 {
@@ -55,7 +55,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     margin: 0 auto;
     background-color: var(--color-surface);
     border-radius: var(--radius-2xl);
-    padding: 3rem;
+    padding: var(--space-md);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--color-border);
   }
@@ -78,7 +78,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     max-width: 400px;
     background-color: var(--color-bg);
     border-radius: var(--radius-xl);
-    padding: 2rem;
+    padding: var(--space-md);
     margin-top: 2rem;
     border: 1px solid var(--color-border);
   }
@@ -87,7 +87,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-md);
     font-weight: 600;
   }
 
@@ -100,7 +100,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
   .mock-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
+    gap: var(--space-xs);
   }
 
   .mock-day {

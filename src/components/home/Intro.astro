@@ -1,82 +1,85 @@
 ---
+const amenities = [
+  {
+    title: "Free Trial / Class Demo",
+    description: "A trial session to spark interest and assess a student's current skill level.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`
+  },
+  {
+    title: "One-to-One Coaching",
+    description: "Personalized lessons tailored to individual skill levels, including customized game analysis and flexible scheduling.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`
+  },
+  {
+    title: "Group Classes",
+    description: "Structured group sessions that promote social interaction and regular practice with peers.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+  },
+  {
+    title: "Skill Levels & Batches",
+    description: "Structured courses (e.g., Pawn, Knight, Bishop, Rook, Queen, King levels) to support gradual advancement.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>`
+  },
+  {
+    title: "FIDE-Rated Instructors",
+    description: "Training from certified coaches rated by the International Chess Federation.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`
+  },
+  {
+    title: "Child-Focused Curriculum",
+    description: "Age-appropriate syllabus designed for different learning stages (from beginner to advanced).",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`
+  },
+  {
+    title: "Progress Tracking & Certificates",
+    description: "Regular tracking of student progress and certificates awarded upon level completion.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`
+  },
+  {
+    title: "Online & Offline Tournaments",
+    description: "Organized events to prepare students for external competitions.",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
+  }
+];
 ---
 
-<section class="section intro-section">
+<section class="section amenities-section">
   <div class="container">
-    <div class="intro-grid">
-      <div class="intro-heading-col">
-        <div class="reveal-fade-up" style="margin-bottom: 2rem;">
-          <h6 class="subtitle">AMENITIES</h6>
-          <h2 class="title">
-            Discover your potential:<br/>
-            <span class="text-primary">Venture your best chess school</span>
-          </h2>
-        </div>
-        
-        <div class="intro-stats-grid-single">
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.1s;">
-            <h3>Free Trial / Class Demo</h3>
-            <p>A trial session to spark interest and assess a student's current skill level.</p>
+    <div class="section-header reveal-fade-up">
+      <h6 class="subtitle">AMENITIES</h6>
+      <h2 class="title">
+        Discover your potential:<br/>
+        <span class="text-primary">Venture your best chess school</span>
+      </h2>
+    </div>
+    
+    <div class="amenities-track-container reveal-fade-up" style="transition-delay: 0.2s;">
+      <div class="amenities-grid">
+        {amenities.map((item) => (
+          <div class="amenity-card hover-lift">
+            <div class="amenity-icon" set:html={item.icon}></div>
+            <h3 class="amenity-title">{item.title}</h3>
+            <p class="amenity-desc">{item.description}</p>
           </div>
-          
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.2s;">
-            <h3>One-to-One Coaching</h3>
-            <p>Personalized lessons tailored to individual skill levels, including customized game analysis and flexible scheduling.</p>
-          </div>
-
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.3s;">
-            <h3>Group Classes</h3>
-            <p>Structured group sessions that promote social interaction and regular practice with peers.</p>
-          </div>
-
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.4s;">
-            <h3>FIDE-Rated Instructors</h3>
-            <p>Training from certified coaches rated by the International Chess Federation.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="intro-content-col">
-        <div class="intro-stats-grid-single">
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.5s;">
-            <h3>Child-Focused Curriculum</h3>
-            <p>Age-appropriate syllabus designed for different learning stages (from beginner to advanced).</p>
-          </div>
-
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.6s;">
-            <h3>Progress Tracking & Certificates</h3>
-            <p>Regular tracking of student progress and certificates awarded upon level completion.</p>
-          </div>
-
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.7s;">
-            <h3>Online & Offline Tournaments</h3>
-            <p>Organized events to prepare students for external competitions.</p>
-          </div>
-
-          <div class="intro-text-card reveal-fade-up" style="transition-delay: 0.8s;">
-            <h3>Skill Levels & Batches</h3>
-            <p>Structured courses (e.g., Pawn, Knight, Bishop, Rook, Queen, King levels) to support gradual advancement.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .intro-section {
-    background-color: var(--color-surface);
-    border-radius: var(--radius-2xl);
-    margin: 2rem;
-    padding: 6rem 2rem;
+  .amenities-section {
+    background-color: var(--color-bg); /* Aligned section background */
   }
 
   .subtitle {
     font-family: var(--font-body);
     font-size: 1rem;
+    font-weight: 600;
     letter-spacing: 0.1em;
-    color: var(--color-secondary);
-    margin-bottom: 2rem;
+    color: var(--color-secondary); /* Aligned brand label color */
+    text-transform: uppercase;
+    margin-bottom: var(--space-xs);
   }
 
   .title {
@@ -89,67 +92,104 @@
     color: var(--color-primary);
   }
 
-  .intro-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
+  /* Grid / Track Layout */
+  .amenities-grid {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    padding: 0.5rem 0.5rem 1.5rem; /* Room for shadows on mobile */
+    margin: 0 -0.5rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
   }
 
-  @media (min-width: 1024px) {
-    .intro-grid {
-      grid-template-columns: 1fr 1fr;
+  .amenities-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* Tablet */
+  @media (min-width: 768px) {
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      overflow-x: visible;
+      padding: 0;
+      margin: 0;
+      scroll-snap-type: none;
     }
   }
 
-  .intro-stats-grid-single {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  /* Laptop */
+  @media (min-width: 1024px) {
+    .amenities-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
-  .intro-stat-card {
-    background-color: var(--color-primary);
-    color: var(--color-surface);
-    padding: 2.5rem;
+  /* Card */
+  .amenity-card {
+    flex: 0 0 85vw; /* Mobile horizontal scrolling size */
+    scroll-snap-align: center;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
+    padding: var(--space-md);
+    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+  
+  @media (min-width: 768px) {
+    .amenity-card {
+      flex: none; /* Reset for CSS grid */
+    }
+  }
+
+  .amenity-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Icon */
+  .amenity-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background-color: #ffe8d6; /* Soft peach */
+    color: #d4621c; /* Brand orange icon */
+    display: flex;
+    align-items: center;
     justify-content: center;
+    margin-bottom: var(--space-sm);
+    flex-shrink: 0;
+  }
+  
+  .amenity-icon :global(svg) {
+    width: 24px;
+    height: 24px;
   }
 
-  .stat-number {
-    font-family: var(--font-display);
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
-  }
-
-  .stat-desc {
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-
-  .stat-desc strong {
-    font-size: 1.5rem;
-  }
-
-  .intro-text-card {
-    background-color: var(--color-bg);
-    padding: 2.5rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-border);
-  }
-
-  .intro-text-card h3 {
-    font-size: 1.25rem;
+  /* Typography */
+  .amenity-title {
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--color-primary);
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-xs);
+    line-height: 1.3;
   }
 
-  .intro-text-card p {
-    font-size: 1rem;
+  .amenity-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.5;
     margin: 0;
+    
+    /* Limit to 4 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 </style>

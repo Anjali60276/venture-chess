@@ -38,8 +38,8 @@ const { title, subtitle } = Astro.props;
 <style>
   .page-header {
     position: relative;
-    padding-top: 180px;
-    padding-bottom: 5rem;
+    padding-top: 140px; /* Space for fixed navbar */
+    padding-bottom: var(--space-xl); /* Standardized bottom padding matching section spacing */
     overflow: hidden;
     background-color: #fffcf9;
     border-bottom-left-radius: var(--radius-2xl);
