@@ -5,7 +5,7 @@ import { courses } from "../../data/courses";
 <section class="section curriculum-section">
   <div class="container">
     <div class="section-header-row reveal-fade-up">
-      <h2 class="text-display title">SYLLABUS</h2>
+      <h2 class="title">Syllabus</h2>
       <a href="/chess-academy-karnataka-india/" class="btn-view-all">
         View All Courses <span class="arrow">→</span>
       </a>
@@ -49,15 +49,16 @@ import { courses } from "../../data/courses";
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-md);
+    gap: 12px; /* Small gap between title and button on phone */
     margin-bottom: var(--space-lg);
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 641px) {
     .section-header-row {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      gap: var(--space-md);
     }
   }
 
@@ -68,21 +69,41 @@ import { courses } from "../../data/courses";
   }
 
   .btn-view-all {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.8rem 1.8rem;
+    padding: 0 16px;
+    height: 40px;
     background-color: var(--color-primary);
     color: var(--color-surface);
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1rem;
-    border-radius: var(--radius-pill);
+    font-size: 13px;
+    border-radius: 8px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     transition: background-color var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out);
     white-space: nowrap;
+    margin-left: auto; /* Aligns right if it wraps to the second row */
+    align-self: flex-end; /* Ensures right-alignment in column layout */
+  }
+
+  @media (min-width: 641px) {
+    .btn-view-all {
+      align-self: auto;
+    }
+  }
+
+  /* Expand tap area to 44px */
+  .btn-view-all::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: 0;
+    right: 0;
   }
 
   .btn-view-all:hover {
@@ -199,7 +220,7 @@ import { courses } from "../../data/courses";
     gap: 0.5rem;
     margin-top: auto;
     padding: 0.6rem 1.2rem;
-    border-radius: var(--radius-pill);
+    border-radius: 8px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     position: static; 
@@ -219,7 +240,7 @@ import { courses } from "../../data/courses";
   }
 
   .course-card:hover .course-link {
-    background-color: #d4621c; 
+    background-color: #3a1610; /* Darker brown */
     color: var(--color-surface);
     transform: translateY(-2px);
   }

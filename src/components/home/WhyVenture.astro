@@ -24,7 +24,7 @@ import MagneticButton from '../ui/MagneticButton.astro';
       
       <!-- Right Column (Content) -->
       <div class="content-col reveal-fade-up" style="transition-delay: 0.2s;">
-        <h6 class="subtitle">WHY VENTURE CHESS ACADEMY</h6>
+        <span class="subtitle">WHY VENTURE CHESS ACADEMY</span>
         <h2 class="title">Trained by FIDE-rated coaches. <span class="highlight">From home.</span></h2>
         <p class="description">
           Expert live coaching that builds real skills - not just rules.<br/>
@@ -247,5 +247,11 @@ import MagneticButton from '../ui/MagneticButton.astro';
 
   .action-wrapper {
     margin-top: 2rem;
+  }
+
+  /* Change border radius for CTA button to a modern rounded rectangle */
+  .action-wrapper :global(a),
+  .action-wrapper :global(.btn-bg) {
+    border-radius: 8px !important;
   }
 </style>

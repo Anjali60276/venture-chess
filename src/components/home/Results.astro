@@ -9,7 +9,7 @@ const featuredResults = achievements.slice(0, 6);
 <section class="section results-section">
   <div class="container">
     <div class="section-header reveal-fade-up">
-      <h2 class="text-display title">STUDENT RESULTS</h2>
+      <h2 class="title">Student Results</h2>
       <div class="results-actions">
         <div class="slider-nav">
           <button class="slider-btn prev-btn" aria-label="Previous results">
@@ -19,7 +19,7 @@ const featuredResults = achievements.slice(0, 6);
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </button>
         </div>
-        <MagneticButton href="/chess-student-achievements/" text="View All Results" variant="secondary" />
+        <MagneticButton href="/chess-student-achievements/" text="View All Results" variant="secondary" className="results-view-all-btn" />
       </div>
     </div>
 
@@ -31,7 +31,7 @@ const featuredResults = achievements.slice(0, 6);
               <img src={result.image} alt={result.name} loading="lazy" />
             </div>
             <div class="result-content">
-              <h4 class="student-name">{result.name}</h4>
+              <h3 class="student-name">{result.name}</h3>
               {result.achievement && (
                 <p class="student-achievement">{result.achievement}</p>
               )}
@@ -79,24 +79,62 @@ const featuredResults = achievements.slice(0, 6);
 
   
 
-  @media (min-width: 768px) {
-    
+  .section-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
   }
 
-
+  @media (min-width: 768px) {
+    .section-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 
   .results-actions {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-md);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 
   @media (min-width: 768px) {
     .results-actions {
-      flex-direction: row;
-      align-items: center;
+      width: auto;
+      justify-content: flex-end;
       gap: var(--space-md);
+    }
+  }
+
+  /* Override MagneticButton for this section only */
+  :global(.results-view-all-btn.magnetic-btn) {
+    border-radius: 8px !important;
+    height: 40px !important;
+    min-height: 44px !important; /* Ensure tap area is safe */
+    padding: 0 16px !important;
+  }
+  
+  :global(.results-view-all-btn.magnetic-btn .btn-bg) {
+    border-radius: 8px !important;
+  }
+
+  :global(.results-view-all-btn.magnetic-btn .btn-text) {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+  }
+
+  @media (max-width: 767px) {
+    :global(.results-view-all-btn.magnetic-btn) {
+      height: 38px !important;
+    }
+    :global(.results-view-all-btn.magnetic-btn .btn-text) {
+      font-size: 12px !important;
     }
   }
 
@@ -124,6 +162,34 @@ const featuredResults = achievements.slice(0, 6);
     color: var(--color-primary);
     border-color: var(--color-secondary);
     transform: scale(1.05);
+  }
+
+  @media (max-width: 767px) {
+    .slider-nav {
+      gap: 8px;
+    }
+    
+    .slider-btn {
+      width: 36px;
+      height: 36px;
+      position: relative;
+    }
+    
+    .slider-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    /* Ensure minimum 44px tap target */
+    .slider-btn::after {
+      content: "";
+      position: absolute;
+      top: -4px;
+      bottom: -4px;
+      left: -4px;
+      right: -4px;
+      border-radius: 50%;
+    }
   }
 
   .title {

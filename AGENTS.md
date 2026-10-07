@@ -35,7 +35,7 @@ After every task, give a report written like an ex-Google senior engineer turned
 2. **Big idea first**: the concept in 2-3 short sentences, before any code.
 3. **Real-world analogy**: one simple everyday example (e.g., "a picture frame that swaps photos by room size").
 4. **Step-by-step walkthrough**: one small step at a time, each with: what, why, and the exact file link with line ranges.
-5. **Summary & Code Reference Tables**: simple comparison tables of updated pages and exact lines of code added.
+5. **Summary & Code Reference Tables**: comparison tables showing BEFORE vs AFTER changes for every modified file, with exact line numbers and clickable file links.
 6. **ASCII diagram**: a simple visual of the layout or flow.
 7. **Code explained section by section**: quote a few lines, then explain each in simple words.
 8. **Common mistakes**: what beginners usually get wrong here.
@@ -50,4 +50,8 @@ After every task, give a report written like an ex-Google senior engineer turned
 ### Rule 3: Clickable direct line links
 - Every file reference in reports, walkthroughs, and comparison tables MUST be a clickable link with line numbers using the `file:///` protocol (e.g., `[Header.astro:L28-L34](file:///c:/Users/HP/Desktop/Chess/venture-chessacademy/src/components/global/Header.astro#L28-L34)`).
 - Clicking the link must navigate directly to the specified file and line range.
+
+### Rule 4: BEFORE vs AFTER Changes Table
+- In every report's summary table, list every modified file with a comparison showing the BEFORE value vs AFTER value and mention the exact line numbers (with clickable `file:///` links).
+
 

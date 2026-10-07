@@ -6,8 +6,8 @@ import MagneticButton from '../ui/MagneticButton.astro';
 <section class="section services-section">
   <div class="container">
     <div class="section-header reveal-fade-up">
-      <h6 class="subtitle">WHAT WE OFFER</h6>
-      <h2 class="text-h1 title">In every chess position,<br/>there are opportunities</h2>
+      <span class="subtitle">WHAT WE OFFER</span>
+      <h2 class="title">In every chess position,<br/>there are opportunities</h2>
     </div>
 
     <div class="services-list">
@@ -37,19 +37,7 @@ import MagneticButton from '../ui/MagneticButton.astro';
     
   }
 
-  
-
-  .subtitle {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    color: var(--color-secondary);
-    margin-bottom: var(--space-sm);
-  }
-
-  .title {
-    color: var(--color-primary);
-  }
+  /* Subtitle color moved to mobile block */
 
   .services-list {
     display: flex;
@@ -134,4 +122,89 @@ import MagneticButton from '../ui/MagneticButton.astro';
     }
   }
 
+  /* Change border radius for Learn More buttons to a modern rounded rectangle */
+  .service-action :global(a),
+  .service-action :global(.btn-bg) {
+    border-radius: 8px !important;
+  }
+
+  /* --- Mobile Only Overrides --- */
+  @media (max-width: 767px) {
+    .service-row {
+      grid-template-columns: 32px 1fr; /* Fixed width for the number */
+      row-gap: 12px;
+      column-gap: 0;
+      padding: var(--space-xl) var(--space-md); /* Shared scale padding */
+    }
+
+    /* Flatten the DOM structure for CSS Grid */
+    .service-content, .service-details {
+      display: contents; 
+    }
+
+    /* Make the "What we offer" subtitle brand yellow */
+    .services-section .subtitle {
+      color: var(--color-secondary);
+    }
+
+    .service-number {
+      grid-column: 1;
+      grid-row: 1;
+      font-size: 1rem; /* Small */
+      color: var(--color-secondary); /* Brand yellow */
+      padding-top: 3px; /* Visual alignment with title */
+    }
+
+    .service-title {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: 20px;
+      margin-bottom: 0;
+      line-height: 1.25;
+    }
+
+    .service-desc {
+      grid-column: 1 / -1; /* Full width, no indent */
+      grid-row: 2;
+      font-size: 15px;
+      line-height: 1.6; /* Comfortable line spacing */
+      max-width: none;
+    }
+
+    .service-action {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      margin-top: 4px; /* 12px row-gap + 4px = 16px total gap from description */
+      margin-bottom: 4px; /* Ensures safe space before row padding starts */
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    /* Small Button Styles for Mobile */
+    .service-action :global(a) {
+      height: 36px;
+      padding: 0 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      width: max-content;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* 44px Minimum Tap Area for Accessibility */
+    .service-action :global(a::after) {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
 </style>

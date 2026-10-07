@@ -4,29 +4,33 @@ import { faqs } from '../../data/faqs';
 
 <section class="section faq-section">
   <div class="container">
-    <div class="section-header reveal-fade-up">
-      <h2 class="text-h1 title">Your top questions<br/>answered with a smile</h2>
-      <p>Here you can find answers to frequently asked questions about our programs and services.</p>
-    </div>
+    <div class="faq-layout">
+      <div class="faq-sidebar reveal-fade-up">
+        <span class="subtitle">FAQ</span>
+        <h2 class="title">Your top questions<br/>answered with a smile</h2>
+        <p class="intro-text">Here you can find answers to frequently asked questions about our programs and services.</p>
+      </div>
 
-    <div class="faq-accordion reveal-fade-up" style="transition-delay: 0.2s;">
-      {faqs.map((faq, index) => (
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span class="question-text">{faq.question}</span>
-            <span class="faq-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer">
-            <div class="answer-inner">
-              <p>{faq.answer}</p>
+      <div class="faq-accordion reveal-fade-up" style="transition-delay: 0.2s;">
+        {faqs.map((faq, index) => (
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls={`faq-answer-${index}`} id={`faq-btn-${index}`}>
+              <span class="question-text">{faq.question}</span>
+              <span class="faq-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" class="vertical-line"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </span>
+            </button>
+            <div class="faq-answer" id={`faq-answer-${index}`} aria-labelledby={`faq-btn-${index}`}>
+              <div class="answer-inner">
+                <p>{faq.answer}</p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -36,16 +40,38 @@ import { faqs } from '../../data/faqs';
     background-color: var(--color-surface);
   }
 
-  
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  @media (min-width: 1024px) {
+    .faq-layout {
+      grid-template-columns: 400px 1fr;
+      align-items: start;
+    }
+    
+    .faq-sidebar {
+      position: sticky;
+      top: 120px; /* Kept in view while scrolling only on desktop */
+    }
+  }
 
   .title {
     color: var(--color-primary);
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
+  }
+
+  .intro-text {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
   }
 
   .faq-accordion {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
     border-top: 1px solid var(--color-border);
   }
 
@@ -58,34 +84,73 @@ import { faqs } from '../../data/faqs';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 0;
+    padding: 1.25rem 0; /* Phone comfortable height */
     text-align: left;
+    background: transparent;
+    border: none;
     color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-question {
+      padding: 1.75rem 0; /* Laptop comfortable height */
+    }
+  }
+
+  .faq-question:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
   }
 
   .question-text {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    padding-right: 2rem;
+    font-size: 1rem; /* 16px on phone */
+    font-weight: 600; /* Semi-bold */
+    line-height: 1.4;
+    padding-right: 1.5rem;
   }
 
-  .faq-icon {
+  @media (min-width: 1024px) {
+    .question-text {
+      font-size: 1.25rem; /* Larger on laptop */
+    }
+  }
+
+  .faq-icon-wrapper {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    transition: transform 0.4s var(--ease-spring);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
-  .faq-question[aria-expanded="true"] .faq-icon {
-    transform: rotate(45deg);
-    color: var(--color-secondary);
+  .faq-icon-wrapper svg {
+    width: 20px; /* Smaller icon on phone */
+    height: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    .faq-icon-wrapper svg {
+      width: 24px; /* Larger icon on laptop */
+      height: 24px;
+    }
+  }
+
+  .vertical-line {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform-origin: center;
+  }
+
+  .faq-question[aria-expanded="true"] .vertical-line {
+    opacity: 0;
+    transform: rotate(90deg);
   }
 
   .faq-answer {
     display: grid;
     grid-template-rows: 0fr;
-    transition: grid-template-rows 0.4s var(--ease-spring);
+    transition: grid-template-rows 0.25s ease;
   }
 
   .faq-question[aria-expanded="true"] + .faq-answer {
@@ -97,8 +162,12 @@ import { faqs } from '../../data/faqs';
   }
 
   .answer-inner p {
-    padding-bottom: 2rem;
+    padding-top: var(--space-xs);
+    padding-bottom: 1.5rem;
     margin: 0;
+    color: #475569;
+    font-size: 0.95rem; /* ~15px on phone */
+    line-height: 1.6;
   }
 </style>
 

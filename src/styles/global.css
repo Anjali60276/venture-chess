@@ -27,16 +27,50 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
 
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.12;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.3;
+}
+
 p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   color: var(--color-text-light);
-  font-size: 1.125rem;
+  font-size: var(--font-size-body);
   line-height: 1.6;
+}
+
+/* Shared Eyebrow Style */
+.eyebrow,
+.subtitle {
+  font-family: var(--font-body);
+  font-size: var(--font-size-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+  display: block;
 }
 
 a {
@@ -76,10 +110,13 @@ ul, ol {
   list-style: none;
 }
 
+button, input, select, textarea {
+  font-family: var(--font-body);
+}
+
 button {
   border: none;
   background: none;
-  font-family: inherit;
   cursor: pointer;
 }
 
@@ -103,28 +140,14 @@ button {
 .section-header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   margin-bottom: var(--space-lg);
 }
 
-/* Typography Utilities */
-.section-header h2.title,
-.section-header h2 {
-  color: var(--color-primary) !important;
-  font-size: clamp(1.85rem, 4vw, 3rem) !important;
-}
-
-.text-display {
-  font-size: clamp(2.5rem, 8vw, 6rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-}
-
-.text-h1 { font-size: clamp(1.75rem, 5vw, 4rem); }
-.text-h2 { font-size: clamp(1.5rem, 4vw, 3rem); }
-.text-h3 { font-size: clamp(1.25rem, 3vw, 2.25rem); }
+/* Typography Scale Helper Utilities */
+.text-h1 { font-size: var(--font-size-h1); }
+.text-h2 { font-size: var(--font-size-h2); }
+.text-h3 { font-size: var(--font-size-h3); }
 
 /* Rounded Corners Utilities */
 .rounded-sm { border-radius: var(--radius-sm); }

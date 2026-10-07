@@ -46,22 +46,32 @@ const amenities = [
 <section class="section amenities-section">
   <div class="container">
     <div class="section-header reveal-fade-up">
-      <h6 class="subtitle">AMENITIES</h6>
+      <span class="subtitle">AMENITIES</span>
       <h2 class="title">
         Discover your potential:<br/>
         <span class="text-primary">Venture your best chess school</span>
       </h2>
     </div>
-    
+
     <div class="amenities-track-container reveal-fade-up" style="transition-delay: 0.2s;">
-      <div class="amenities-grid">
-        {amenities.map((item) => (
-          <div class="amenity-card hover-lift">
-            <div class="amenity-icon" set:html={item.icon}></div>
-            <h3 class="amenity-title">{item.title}</h3>
-            <p class="amenity-desc">{item.description}</p>
-          </div>
-        ))}
+      <div class="slider-wrapper">
+        <button class="amenity-slider-btn amenity-prev-btn" aria-label="Previous amenity" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        
+        <div class="amenities-grid" id="amenitiesTrack">
+          {amenities.map((item) => (
+            <div class="amenity-card hover-lift">
+              <div class="amenity-icon" set:html={item.icon}></div>
+              <h3 class="amenity-title">{item.title}</h3>
+              <p class="amenity-desc">{item.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <button class="amenity-slider-btn amenity-next-btn" aria-label="Next amenity">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -72,24 +82,62 @@ const amenities = [
     background-color: var(--color-bg); /* Aligned section background */
   }
 
-  .subtitle {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--color-secondary); /* Aligned brand label color */
-    text-transform: uppercase;
-    margin-bottom: var(--space-xs);
-  }
-
-  .title {
-    color: var(--color-text);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.1;
-  }
-
   .text-primary {
     color: var(--color-primary);
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Controls (Arrows) */
+  .amenity-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 38px;
+    height: 38px;
+    background-color: transparent;
+    border: none;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s var(--ease-out), color 0.2s var(--ease-out);
+  }
+
+  .amenity-slider-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .amenity-slider-btn svg { width: 24px; height: 24px; }
+  .amenity-slider-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; border-radius: 50%; }
+  .amenity-slider-btn:hover:not(:disabled) { transform: translateY(-50%) scale(1.15); }
+  .amenity-slider-btn:active:not(:disabled) { transform: translateY(-50%) scale(0.9); }
+  .amenity-slider-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* Hide arrows completely on desktop */
+  @media (min-width: 1024px) {
+    .amenity-slider-btn { display: none !important; }
+  }
+
+  /* Phone (overlap edges) */
+  .amenity-prev-btn { left: -12px; }
+  .amenity-next-btn { right: -12px; }
+
+  @media (min-width: 641px) {
+    /* Tablet: arrows outside if room */
+    .amenity-prev-btn { left: -16px; }
+    .amenity-next-btn { right: -16px; }
   }
 
   /* Grid / Track Layout */
@@ -97,21 +145,22 @@ const amenities = [
     display: flex;
     gap: var(--space-md);
     overflow-x: auto;
-    padding: 0.5rem 0.5rem 1.5rem; /* Room for shadows on mobile */
-    margin: 0 -0.5rem;
+    padding: 10px 5px; /* Prevent shadow clipping */
+    margin: -10px -5px; /* Offset padding */
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
   }
 
   .amenities-grid::-webkit-scrollbar {
     display: none; /* Chrome/Safari */
   }
 
-  /* Tablet */
-  @media (min-width: 768px) {
+  /* Laptop */
+  @media (min-width: 1024px) {
     .amenities-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       overflow-x: visible;
       padding: 0;
       margin: 0;
@@ -119,29 +168,29 @@ const amenities = [
     }
   }
 
-  /* Laptop */
-  @media (min-width: 1024px) {
-    .amenities-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
   /* Card */
   .amenity-card {
-    flex: 0 0 85vw; /* Mobile horizontal scrolling size */
-    scroll-snap-align: center;
+    flex: 0 0 100%; /* Mobile: 1 whole card */
+    scroll-snap-align: start;
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    padding: var(--space-md);
+    padding: var(--space-md) 32px; /* Side padding so arrows don't cover text */
     box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: auto; /* Stretch to fill row */
     transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
   }
   
-  @media (min-width: 768px) {
+  @media (min-width: 641px) {
+    .amenity-card {
+      flex: 0 0 calc(50% - (var(--space-md) / 2)); /* Tablet: 2 whole cards */
+      padding: var(--space-md); /* Restore padding if arrows are further out */
+    }
+  }
+
+  @media (min-width: 1024px) {
     .amenity-card {
       flex: none; /* Reset for CSS grid */
     }
@@ -193,3 +242,42 @@ const amenities = [
     overflow: hidden;
   }
 </style>
+
+<script>
+  const initAmenitiesSlider = () => {
+    const track = document.getElementById('amenitiesTrack');
+    const prevBtn = document.querySelector('.amenities-section .amenity-prev-btn') as HTMLButtonElement;
+    const nextBtn = document.querySelector('.amenities-section .amenity-next-btn') as HTMLButtonElement;
+    if (!track) return;
+
+    const getScrollAmount = () => {
+      const card = track.querySelector('.amenity-card');
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return card ? (card as HTMLElement).offsetWidth + gap : 0;
+    };
+
+    const updateButtons = () => {
+      if (!prevBtn || !nextBtn) return;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.disabled = track.scrollLeft <= 5;
+      nextBtn.disabled = track.scrollLeft >= maxScroll - 5;
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', () => {
+      requestAnimationFrame(updateButtons);
+    }, { passive: true });
+
+    window.addEventListener('resize', updateButtons);
+    setTimeout(updateButtons, 100);
+  };
+
+  initAmenitiesSlider();
+</script>

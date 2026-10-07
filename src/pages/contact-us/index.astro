@@ -16,17 +16,17 @@ import PageHeader from '../../components/ui/PageHeader.astro';
 
           <div class="info-items">
             <div class="info-item">
-              <h4 class="info-label">Address</h4>
+              <h3 class="info-label">Address</h3>
               <p>HEGDE Arcade, Main Road, Puttur, Karnataka, India 574201</p>
             </div>
             
             <div class="info-item">
-              <h4 class="info-label">Phone</h4>
+              <h3 class="info-label">Phone</h3>
               <p><a href="tel:+919567027370">+91 95670 27370</a></p>
             </div>
 
             <div class="info-item">
-              <h4 class="info-label">Email</h4>
+              <h3 class="info-label">Email</h3>
               <p><a href="mailto:venturechessacademy@gmail.com">venturechessacademy@gmail.com</a></p>
             </div>
           </div>
@@ -100,6 +100,13 @@ import PageHeader from '../../components/ui/PageHeader.astro';
 </BaseLayout>
 
 <style>
+  /* Page header mobile spacing fix strictly for this page */
+  @media (max-width: 767px) {
+    :global(.page-header) {
+      padding-top: 180px !important;
+    }
+  }
+
   .text-primary {
     color: var(--color-primary);
   }
@@ -118,13 +125,13 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     gap: var(--space-lg);
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .contact-grid {
       grid-template-columns: 1fr 1fr;
     }
   }
 
-  .contact-info {
+  .contact-info, .contact-form-wrapper {
     background-color: var(--color-surface);
     padding: var(--space-md);
     border-radius: var(--radius-2xl);
@@ -154,14 +161,6 @@ import PageHeader from '../../components/ui/PageHeader.astro';
 
   .info-item a:hover {
     color: var(--color-primary);
-  }
-
-  .contact-form-wrapper {
-    background-color: var(--color-surface);
-    padding: var(--space-md);
-    border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--color-border);
   }
 
   .contact-form {
@@ -194,6 +193,7 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     font-size: 1rem;
     background-color: var(--color-bg);
     transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
   }
 
   .form-group input:focus,
@@ -228,5 +228,65 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     padding: 0;
     margin: 0;
     accent-color: var(--color-primary);
+  }
+
+  /* Mobile/Tablet overrides strictly requested by user */
+  @media (max-width: 767px) {
+    .contact-info, .contact-form-wrapper {
+      padding: 20px;
+    }
+    
+    .contact-grid {
+      gap: 24px;
+    }
+    
+    .contact-info h2.mb-4 {
+      font-size: 26px;
+    }
+    
+    .contact-info p.mb-8 {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .info-items {
+      gap: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .info-label {
+      font-size: 13px;
+      color: #d4621c;
+      margin-bottom: 4px;
+    }
+    
+    .info-item p, .info-item a {
+      font-size: 16px;
+      color: var(--color-primary);
+      font-weight: 400;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      margin: 0;
+    }
+    
+    .info-item a {
+      display: flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 0;
+    }
+
+    .info-item a:hover {
+      color: var(--color-primary); /* No hover effects */
+    }
+
+    .contact-form {
+      gap: 20px;
+    }
   }
 </style>
