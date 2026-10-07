@@ -398,7 +398,8 @@ const legalLinks = [
     .footer-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 28px; /* 28px row and column gaps between blocks */
+      row-gap: 28px; 
+      column-gap: clamp(24px, 45vw - 135px, 52px);
       margin-bottom: 0;
     }
 
@@ -431,7 +432,7 @@ const legalLinks = [
 
     .brand-col :global(.magnetic-btn) {
       grid-column: 1 / -1;
-      justify-self: flex-start;
+      justify-self: center;
       margin: 16px 0 0 0 !important; /* Gap of 16px between row and button */
       height: 44px !important;
       min-height: 44px !important;
