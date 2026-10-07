@@ -139,6 +139,17 @@ import PageHeader from '../../components/ui/PageHeader.astro';
     border: 1px solid var(--color-border);
   }
 
+  .contact-info {
+    align-self: start;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-info {
+      position: sticky;
+      top: 108px;
+    }
+  }
+
   .info-items {
     display: flex;
     flex-direction: column;

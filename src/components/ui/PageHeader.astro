@@ -11,8 +11,14 @@ const { title, subtitle } = Astro.props;
   <!-- Full-bleed responsive background artwork banner layer -->
   <div class="hero-bg-wrapper">
     <picture class="hero-bg-picture">
-      <source media="(min-width: 1024px)" srcset="/images/hero/hero-desktop.png" />
-      <source media="(min-width: 640px)" srcset="/images/hero/hero-tablet.png" />
+      <source
+        media="(min-width: 1024px)"
+        srcset="/images/hero/hero-desktop.png"
+      />
+      <source
+        media="(min-width: 640px)"
+        srcset="/images/hero/hero-tablet.png"
+      />
       <img
         src="/images/hero/hero-mobile.png"
         alt="Venture Chess Academy Banner"
@@ -39,9 +45,11 @@ const { title, subtitle } = Astro.props;
   .page-header {
     position: relative;
     padding-top: 140px; /* Space for fixed navbar */
-    padding-bottom: var(--space-xl); /* Standardized bottom padding matching section spacing */
+    padding-bottom: var(
+      --space-xl
+    ); /* Standardized bottom padding matching section spacing */
     overflow: hidden;
-    background-color: #fffcf9;
+    background-color: #f9f9f8;
     border-bottom-left-radius: var(--radius-2xl);
     border-bottom-right-radius: var(--radius-2xl);
   }
@@ -88,12 +96,12 @@ const { title, subtitle } = Astro.props;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    background: linear-gradient(to right, #fffcf959 0%, #fffcf945 45%, #fffcf91c 80%);
+  background: linear-gradient(to right, #3d3c3b59 0%, #42403e7a 45%, #6f6c694d 80%);
   }
 
   @media (max-width: 1023px) {
     .hero-overlay {
-      background: linear-gradient(to right, #fffcf959 0%, #fffcf945 45%, #fffcf91c 80%);
+     background: linear-gradient(to right, #3d3c3b59 0%, #42403e7a 45%, #6f6c694d 80%);
     }
   }
 
@@ -118,9 +126,8 @@ const { title, subtitle } = Astro.props;
   .relative {
     position: relative;
   }
-  
+
   .z-10 {
     z-index: 10;
   }
 </style>
-
