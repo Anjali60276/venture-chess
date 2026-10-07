@@ -1,21 +1,20 @@
 ---
-import MagneticButton from '../ui/MagneticButton.astro';
+import MagneticButton from "../ui/MagneticButton.astro";
 
 const currentYear = new Date().getFullYear();
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Results', href: '/chess-student-achievements/' },
-  { label: 'Courses', href: '/chess-academy-karnataka-india/' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Contact', href: '/contact-us/' }
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about/" },
+  { label: "Results", href: "/chess-student-achievements/" },
+  { label: "Courses", href: "/chess-academy-karnataka-india/" },
+  { label: "Contact", href: "/contact-us/" },
 ];
 
 const legalLinks = [
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Terms and Conditions', href: '/terms-and-conditions' },
-  { label: 'Cancellation & Refund Policy', href: '/cancellations-refund' }
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms and Conditions", href: "/terms-and-conditions" },
+  { label: "Cancellation & Refund Policy", href: "/cancellations-refund" },
 ];
 ---
 
@@ -25,18 +24,19 @@ const legalLinks = [
       <!-- Brand Column -->
       <div class="footer-col brand-col reveal-fade-up">
         <a href="/" class="footer-logo">
-          <img 
-            src="https://venturechessacademy.com/wp-content/uploads/2025/04/Venture-Chess-Academy.png" 
-            alt="Venture Chess Academy" 
+          <img
+            src="https://venturechessacademy.com/wp-content/uploads/2025/04/Venture-Chess-Academy.png"
+            alt="Venture Chess Academy"
             class="logo-img"
           />
         </a>
         <p class="brand-tagline">
-          Creating a winning mentality, giving birth to a tough generation. Let your child explore chess with FIDE Rated coaches.
+          Creating a winning mentality, giving birth to a tough generation. Let
+          your child explore chess with FIDE Rated coaches.
         </p>
-        <MagneticButton 
-          href="/appointment/" 
-          text="Free Demo Class" 
+        <MagneticButton
+          href="/appointment/"
+          text="Free Demo Class"
           variant="secondary"
         />
       </div>
@@ -45,46 +45,151 @@ const legalLinks = [
       <div class="footer-col reveal-fade-up" style="transition-delay: 0.1s;">
         <h3 class="col-title">Navigation</h3>
         <ul class="footer-links">
-          {navLinks.map(link => (
-            <li>
-              <a href={link.href} class="footer-link">{link.label}</a>
-            </li>
-          ))}
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="footer-link">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <!-- Contact Column -->
       <div class="footer-col reveal-fade-up" style="transition-delay: 0.2s;">
-        <h3 class="col-title">Contact Us</h3>
+        <h3 class="col-title">Contact us</h3>
         <address class="contact-info">
           <p>
-            <strong>Venture Chess Academy</strong><br/>
-            HEGDE Arcade, Main Road,<br/>
+            <strong>Venture Chess Academy</strong><br />
+            HEGDE Arcade, Main Road,<br />
             Puttur, Karnataka, India 574201
           </p>
           <p>
-            <a href="tel:+919567027370" class="footer-link">+91 95670 27370</a>
+            <a href="tel:+919567027370" class="contact-link">+91 95670 27370</a>
           </p>
           <p>
-            <a href="mailto:venturechessacademy@gmail.com" class="footer-link">venturechessacademy@gmail.com</a>
+            <a href="mailto:venturechessacademy@gmail.com" class="contact-link"
+              >venturechessacademy@gmail.com</a
+            >
           </p>
         </address>
-        
+
         <div class="social-links">
-          <a href="https://www.facebook.com/venturechessacademy" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <a
+            href="https://www.facebook.com/venturechessacademy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="Facebook"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+              ></path></svg
+            >
           </a>
-          <a href="https://x.com/Venture_Chess?t=rFFXq75gPN-yX9uMGQn2Sw&s=09" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="X (Twitter)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+          <a
+            href="https://x.com/Venture_Chess?t=rFFXq75gPN-yX9uMGQn2Sw&s=09"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="X (Twitter)"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path
+                d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg
+            >
           </a>
-          <a href="https://www.instagram.com/venturechessacademy" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <a
+            href="https://www.instagram.com/venturechessacademy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"
+              ></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+              ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg
+            >
           </a>
-          <a href="https://www.linkedin.com/in/venture-chess-academy-241169314/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <a
+            href="https://www.linkedin.com/in/venture-chess-academy-241169314/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="LinkedIn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path><rect x="2" y="9" width="4" height="12"></rect><circle
+                cx="4"
+                cy="4"
+                r="2"></circle></svg
+            >
           </a>
-          <a href="https://youtube.com/@venturechessacademy?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+          <a
+            href="https://youtube.com/@venturechessacademy?sub_confirmation=1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon"
+            aria-label="YouTube"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+              ></path><polygon
+                points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+              ></polygon></svg
+            >
           </a>
         </div>
       </div>
@@ -92,19 +197,26 @@ const legalLinks = [
 
     <!-- Bottom Bar -->
     <div class="footer-bottom reveal-fade-up" style="transition-delay: 0.3s;">
-      <p class="copyright">&copy; {currentYear} Venture Chess Academy. All Rights Reserved.</p>
+      <p class="copyright">
+        &copy; {currentYear} Venture Chess Academy. All Rights Reserved.
+      </p>
       <ul class="legal-links">
-        {legalLinks.map(link => (
-          <li>
-            <a href={link.href} class="legal-link">{link.label}</a>
-          </li>
-        ))}
+        {
+          legalLinks.map((link) => (
+            <li>
+              <a href={link.href} class="legal-link">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
 </footer>
 
 <style>
+  /* Base (Laptop/Desktop) Styles */
   .footer {
     background-color: var(--color-primary);
     color: var(--color-surface);
@@ -116,79 +228,60 @@ const legalLinks = [
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 2.5rem;
   }
 
-  @media (max-width: 767px) {
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .contact-info {
-      align-items: center;
-      text-align: center;
-    }
-
-    .social-links {
-      justify-content: center;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .footer-grid {
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: var(--space-md);
-    }
-  }
-
-  .brand-col {
+  .footer-col {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .footer-logo {
     display: block;
     width: 100%;
+    max-width: 320px;
+    text-align: center;
+    margin-bottom: 1rem;
   }
 
   .logo-img {
-    max-width: 110px; /* Shrunk by ~45% */
+    max-width: 110px;
     height: auto;
     display: inline-block;
-    margin-bottom: var(--space-sm);
   }
 
   .brand-tagline {
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 400px;
-    margin-bottom: var(--space-md);
+    color: #ffffff;
+    max-width: 320px;
+    margin-bottom: 1.5rem;
+    font-size: 15px;
+    line-height: 1.5;
   }
 
   .col-title {
     font-family: var(--font-body);
     font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-md);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
     color: var(--color-secondary);
   }
 
   .footer-links {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 0.75rem;
   }
 
   .footer-link {
     color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
     transition: color 0.2s;
+    text-decoration: none;
+    display: inline-block;
   }
 
   .footer-link:hover {
@@ -199,17 +292,31 @@ const legalLinks = [
     font-style: normal;
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 1rem;
   }
 
   .contact-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .contact-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .contact-link:hover {
     color: rgba(255, 255, 255, 0.8);
   }
 
   .social-links {
     display: flex;
-    gap: var(--space-sm);
-    margin-top: 1.5rem;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   .social-icon {
@@ -221,7 +328,11 @@ const legalLinks = [
     border-radius: 50%;
     background-color: var(--color-secondary);
     color: var(--color-primary);
-    transition: background-color 0.25s var(--ease-out), color 0.25s var(--ease-out), transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+    transition:
+      background-color 0.25s var(--ease-out),
+      color 0.25s var(--ease-out),
+      transform 0.25s var(--ease-out),
+      box-shadow 0.25s var(--ease-out);
   }
 
   .social-icon:hover {
@@ -233,42 +344,211 @@ const legalLinks = [
 
   .footer-bottom {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--space-md);
+    gap: 1.5rem;
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-  }
-
-  @media (min-width: 768px) {
-    .footer-bottom {
-      flex-direction: row;
-      justify-content: space-between;
-      text-align: left;
-    }
+    text-align: left;
   }
 
   .copyright {
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
+    font-size: 14px;
     margin: 0;
   }
 
   .legal-links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-md);
+    gap: 1.25rem;
   }
 
   .legal-link {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
     transition: color 0.2s;
+    text-decoration: none;
+    display: inline-block;
   }
 
   .legal-link:hover {
     color: var(--color-surface);
+  }
+
+  /* Tablet Layout */
+  @media (max-width: 1023px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .brand-col {
+      grid-column: 1 / -1;
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* Phone Layout overrides (Up to ~640px) */
+  @media (max-width: 639px) {
+    .footer {
+      padding: 2rem 16px 1rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px; /* 28px row and column gaps between blocks */
+      margin-bottom: 0;
+    }
+
+    .brand-col {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 16px; /* Gap between logo and text */
+      align-items: start;
+    }
+
+    .footer-logo {
+      grid-column: 1;
+      margin-bottom: 0;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      height: auto;
+      margin: 0;
+    }
+
+    .brand-tagline {
+      grid-column: 2;
+      margin: 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+    }
+
+    .brand-col :global(.magnetic-btn) {
+      grid-column: 1 / -1;
+      justify-self: flex-start;
+      margin: 16px 0 0 0 !important; /* Gap of 16px between row and button */
+      height: 44px !important;
+      min-height: 44px !important;
+      padding: 0 20px !important; /* even side padding 20px */
+      white-space: nowrap !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .footer-col {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .footer-col:nth-child(2) {
+      width: auto;
+      min-width: 0;
+    }
+
+    .footer-col:nth-child(3) {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .col-title {
+      font-size: 16px;
+      margin: 0 0 12px 0; /* heading gap */
+    }
+
+    .footer-links {
+      flex-direction: column;
+      gap: 12px; /* 12px gap between rows */
+    }
+
+    .contact-info {
+      gap: 12px; /* 12px gap between items */
+    }
+
+    .contact-info p {
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-link, .contact-link {
+      margin: -12px 0;
+      padding: 12px 0; /* tap area ~44px without changing gap */
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      display: inline-block;
+      line-height: 1.5;
+    }
+
+    .contact-link {
+      white-space: nowrap;
+    }
+
+    .social-links {
+      margin-top: 12px;
+      justify-content: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      padding: 4px; /* 36px visible */
+      background-clip: content-box;
+      margin: 0;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      padding-top: 20px; /* 20px gap from divider to copyright */
+      gap: 12px; /* 12px gap between copyright and links */
+      margin-top: 28px; /* 28px gap from top blocks */
+    }
+
+    .copyright {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .legal-links {
+      justify-content: flex-start;
+      gap: 8px; /* 8px row and column gap */
+    }
+
+    .legal-link {
+      font-size: 14px;
+      padding: 8px 0;
+      margin: -8px 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  /* Handle very narrow screens <340px */
+  @media (max-width: 339px) {
+    .footer-grid {
+      flex-direction: column;
+      gap: 28px;
+    }
+    .footer-col:nth-child(2),
+    .footer-col:nth-child(3) {
+      width: 100%;
+      min-width: 0;
+    }
+    .contact-link {
+      white-space: normal;
+      word-break: break-all;
+    }
   }
 </style>
